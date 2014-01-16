@@ -1,0 +1,16 @@
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /sachtler/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /sachtler/index.php [L]
+</IfModule>
+# supress php errors
+#php_flag display_errors on
+
+# END WordPress
+
+SetEnv APPLICATION_ENV dev

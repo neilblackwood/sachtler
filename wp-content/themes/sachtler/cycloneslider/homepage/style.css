@@ -1,0 +1,79 @@
+/*** Template Homepage ***/
+.cycloneslider-template-sachtler img{
+    display:block;
+}
+.cycloneslider-template-sachtler .cycloneslider-prev,
+.cycloneslider-template-sachtler .cycloneslider-next{
+    display:none;
+    position:absolute;
+    top:50%;
+    margin-top:-22px;
+    z-index:102;
+    width:26px;
+    height:44px;
+    text-indent:-99999px;
+    background: url($tpl/images/sprite-arrows.png) no-repeat;
+}
+.cycloneslider-template-sachtler .cycloneslider-prev{
+    left:10px;
+    background-position:0 0;
+}
+.cycloneslider-template-sachtler .cycloneslider-next{
+    right:10px;
+    background-position:-29px 0;
+}
+.cycloneslider-template-sachtler .cycloneslider-pager{
+	width:100%;
+	text-align:center;
+}
+.cycloneslider-template-sachtler .cycloneslider-pager span {
+    background: url($tpl/images/sprite-nav.png) no-repeat scroll 0 0 transparent;
+    display: inline-block;
+    font-size: 0;
+    width: 10px;
+    height: 10px;
+    line-height: 0;
+    margin: 7px;
+    text-indent: -99999px;
+}
+.cycloneslider-template-sachtler .cycloneslider-pager span.cycle-pager-active {
+    background-position: left bottom;
+}
+.cycloneslider-template-sachtler .cycloneslider-caption{
+    position:absolute;
+    left:0;
+    top:2em;
+    z-index:99;
+    color:#fff;
+}
+.cycloneslider-template-sachtler h1 {font-size:4em;line-height:1.2em;}
+.cycloneslider-template-sachtler p,
+.cycloneslider-template-sachtler a {font-size:1.200em;}
+.cycloneslider-template-sachtler .cycloneslider-caption .inside {padding-left:3em;}
+.cycloneslider-template-sachtler .cycloneslider-slide iframe,
+.cycloneslider-template-sachtler .cycloneslider-slide object,
+.cycloneslider-template-sachtler .cycloneslider-slide embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+@media only screen and (max-width: 1080px) {
+	.cycloneslider-template-sachtler h1 {font-size:3.600em;}
+	.cycloneslider-template-sachtler p,
+	.cycloneslider-template-sachtler a {font-size:1.067em;}
+	.cycloneslider-template-sachtler .cycloneslider-caption .inside {padding-left:2em;}
+}
+
+@media only screen and (max-width: 960px) {
+	.cycloneslider-template-sachtler h1 {font-size:3.200em;}
+	.cycloneslider-template-sachtler p,
+	.cycloneslider-template-sachtler a {font-size:0.933em;}
+	.cycloneslider-template-sachtler .cycloneslider-caption .inside {padding-left:1em;}
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+	
+}
