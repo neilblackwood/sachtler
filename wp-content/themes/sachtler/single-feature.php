@@ -27,9 +27,12 @@ get_header(); ?>
 </div>
 <div class="sep">
 	<h2>Get more impressions</h2>
-    <!--<?php $query = new WP_Query( array( 'post_type' => array('feature'), 'posts_per_page' => 12,'orderby' => 'date', 'order' => 'ASC', 'post__not_in' => array(get_the_id())));
+    <div id="feature-associated-bucket" class="bucket-widget-area">
+        <?php echo do_shortcode('[content area="feature-summary" style="feature" span="span3"]'); ?>
+    </div>
+    <!--<?php /* $query = new WP_Query( array( 'post_type' => array('feature'), 'posts_per_page' => 12,'orderby' => 'date', 'order' => 'ASC', 'post__not_in' => array(get_the_id())));
 	$classes = array('span3','new-line','feature-summary');
-	while ( $query->have_posts() ) : $query->the_post();?>
+	while ( $query->have_posts() ) : $query->the_post(); ?>
 		--><div id="post-<?php the_ID(); ?>" <?php post_class($classes); ?>>
 		<a href="<?php the_permalink(); ?>" title="<?php printf( __('Read %s', 'blankslate'), the_title_attribute('echo=0') ); ?>" rel="bookmark">
 		<div class="entry-summary">
@@ -40,8 +43,9 @@ get_header(); ?>
 		</div><!-- 
 		<?php $classes[1] = '';
 	endwhile;
-	wp_reset_postdata();?>
+	wp_reset_postdata(); */ ?>
 --></div>
+</div>
 <?php echo $feature_main_quote; ?>
 <div class="sep">
 	<div id="feature-equipment-col" class="span4 new-line">

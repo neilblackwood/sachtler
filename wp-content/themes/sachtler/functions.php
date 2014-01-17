@@ -1106,21 +1106,44 @@ function get_content_bucket( $atts, $content = null ) {
 		'span' => '',
 		'style' => 'default',
 	), $atts ) );
-	
+
 	$output = '';
 	$newline = 'new-line';
 	if($area == '') return '';
-	
-	$posts = new WP_Query(
-		array(
-			'post_type' => 'content',
-			'bucket' => $area,
-			'order_by' => 'menu_order',
-			'order' => 'ASC'
-			)); 
+
+	switch($style){
+
+        case 'feature' :
+
+            $posts = new WP_Query(
+
+            array(
+                'post_type' => array('feature'),
+                'posts_per_page' => 12,
+                'order_by' => 'date',
+                'order' => 'ASC',
+                'post__not_in' => array(get_the_id())
+                ));
+
+        break;
+
+        default:
+
+            $posts = new WP_Query(
+                array(
+                    'post_type' => 'content',
+                    'bucket' => $area,
+                    'order_by' => 'menu_order',
+                    'order' => 'ASC'
+                    ));
+
+        break;
+
+    }
+
 	
 	while ( $posts->have_posts() ) : $posts->the_post();
-				
+
 		switch($style){
 			
 			case 'menu' :
@@ -1135,6 +1158,26 @@ function get_content_bucket( $atts, $content = null ) {
 				$output .= '</li><!--'."\n";
 				$post_link = '';
 			
+			break;
+
+			case 'feature' :
+
+			    $post_link = get_permalink( get_the_ID() );
+
+				$output .= '--><li class="'.$area.' '.$style.'-bucket content-bucket '.$span.' '.$newline.'">'."\n";
+
+                if($post_link) $output .= '<a class="content-bucket-link" href="'.$post_link.'" rel="bookmark">';
+                $output .= '<div class="entry-summary">';
+                $output .= "\t".get_the_post_thumbnail(get_the_ID(), 'full');
+                $output .= "\t".'<div class="summary">'.wpautop(get_the_content()).'</div>'."\n";
+                $output .= '</div>';
+                if($post_link) $output .= '</a>';
+
+				if ( is_user_logged_in() ) $output .= "\t".'<a class="post-edit-link" href="'.get_edit_post_link( get_the_ID() ).'">Edit</a>'."\n";
+
+				$output .= '</li><!--'."\n";
+				$post_link = '';
+
 			break;
 			
 			default :
