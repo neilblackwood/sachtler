@@ -790,6 +790,10 @@ BUCKETS
 #page-content .overlay-bucket .inside p {font-size:1em;margin:0;color:#7F8C97;}
 #page-content .overlay-bucket .inside strong {color:black;}
 
+.feature-bucket {
+    cursor: pointer;
+}
+
 /*-------------------------------------------------------------
 PAGE SPECIFIC CSS
 -------------------------------------------------------------*/

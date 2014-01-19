@@ -1166,12 +1166,12 @@ function get_content_bucket( $atts, $content = null ) {
 
 				$output .= '--><li class="'.$area.' '.$style.'-bucket content-bucket '.$span.' '.$newline.'">'."\n";
 
-                if($post_link) $output .= '<a class="content-bucket-link" href="'.$post_link.'" rel="bookmark">';
+                //if($post_link) $output .= '<a class="content-bucket-link" href="'.$post_link.'" rel="bookmark">';
                 $output .= '<div class="entry-summary">';
                 $output .= "\t".get_the_post_thumbnail(get_the_ID(), 'full');
                 $output .= "\t".'<div class="summary">'.wpautop(get_the_content()).'</div>'."\n";
                 $output .= '</div>';
-                if($post_link) $output .= '</a>';
+                //if($post_link) $output .= '</a>';
 
 				if ( is_user_logged_in() ) $output .= "\t".'<a class="post-edit-link" href="'.get_edit_post_link( get_the_ID() ).'">Edit</a>'."\n";
 

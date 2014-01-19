@@ -854,7 +854,7 @@ var clickedItem = 1;
 				// visible width/height
 				visibleSpace = this.options.orientation === 'horizontal' ? this.$carousel.width() : this.$carousel.height();
 			
-			console.log('in::' + this.fitCount);	
+			console.log('in::' + this.fitCount);
 			
 			if( tvalue === undefined ) {
 				
@@ -1162,3 +1162,40 @@ console.log(';;'+clickedItem);
         return result;
     };  
 })(jQuery);
+
+// Animate related featured items on click event
+$(function() {
+
+    $( "li.feature-summary" ).click(function(){
+
+        var currentItem = $(this), duration = 600;
+        $(this).removeAttr('style');
+
+        function switchItem() {
+            $(currentItem).switchClass( "span3", "span9", duration, function() {
+                $(this).find('.summary').fadeIn("slow")
+            });
+        }
+
+        if($(this).hasClass("span3") && !$(this).prevAll().hasClass("span9")){
+
+            $('.elastislide-nav').fadeOut();
+
+            if($(this).prevAll().hasClass("span3") && !($(this).hasClass('new-line'))){
+                $(this).prevAll('.span3').hide(duration, function() {
+                    switchItem();
+                });
+            } else {
+                switchItem();
+            }
+        } else {
+            $('.summary').fadeOut();
+            $( ".span9" ).switchClass( "span9", "span3", duration, function() {
+                $(currentItem).prevAll('.span3').show(duration);
+                $('.elastislide-nav').fadeIn();
+            });
+        }
+
+        return false;
+    });
+});
