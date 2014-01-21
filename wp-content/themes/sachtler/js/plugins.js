@@ -1195,12 +1195,9 @@ $(function() {
             $('li.feature-summary .summary').fadeOut();
             $( "li.feature-summary.span9" ).switchClass( "span9", "span3", duration, function() {
                 $(this).removeClass( "new-line");
-                $(currentItem).prevAll('.span3').show(duration, function() {
-                    $( "li.feature-summary:nth-child(5)" ).addClass( "new-line");
-                });
+                $(currentItem).prevAll('.span3').show(duration);
+                $( "li.feature-summary:nth-child(5)" ).addClass( "new-line");
                 $('.elastislide-nav').fadeIn();
-
-
             });
         }
 
