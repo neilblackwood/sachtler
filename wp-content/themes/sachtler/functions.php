@@ -1113,20 +1113,6 @@ function get_content_bucket( $atts, $content = null ) {
 
 	switch($style){
 
-        case 'feature' :
-
-            $posts = new WP_Query(
-
-            array(
-                'post_type' => array('feature'),
-                'posts_per_page' => 12,
-                'order_by' => 'date',
-                'order' => 'ASC',
-                'post__not_in' => array(get_the_id())
-                ));
-
-        break;
-
         default:
 
             $posts = new WP_Query(
@@ -1137,84 +1123,78 @@ function get_content_bucket( $atts, $content = null ) {
                     'order' => 'ASC'
                     ));
 
+            while ( $posts->have_posts() ) : $posts->the_post();
+
+                switch($style){
+
+                    case 'menu' :
+
+                        $post_link = get_post_meta( get_the_ID(), '_post_link_url', true );
+                        $output .= '--><li class="'.$area.' '.$style.'-bucket content-bucket '.$span.' '.$newline.'">'."\n";
+                        if($post_link) $output .= '<a class="content-bucket-link" href="'.$post_link.'">';
+                        $output .= "\t".'<div class="inside">'.wpautop(get_the_content()).'</div>'."\n";
+                        $output .= "\t".get_the_post_thumbnail(get_the_ID(), 'full');
+                        if($post_link) $output .= '</a>';
+                        if ( is_user_logged_in() ) $output .= "\t".'<a class="post-edit-link" href="'.get_edit_post_link( get_the_ID() ).'">Edit</a>'."\n";
+                        $output .= '</li><!--'."\n";
+                        $post_link = '';
+
+                    break;
+
+                    default :
+
+                        $post_link = get_post_meta( get_the_ID(), '_post_link_url', true );
+                        $output .= '--><li class="'.$area.' '.$style.'-bucket content-bucket '.$span.' '.$newline.'">'."\n";
+
+                        if($area == 'news-ticker-buckets'){
+                            if($post_link) $output .= '<a class="content-bucket-link span7" href="'.$post_link.'">';
+                            $output .= '<span class="redBox">'. get_post_meta( get_the_ID(), '_content_redbox', true ) .'</span>';
+                            $output .= '<b>'.get_the_title().': </b>'.get_the_content();
+                            if($post_link) $output .= '</a>';
+                        }else{
+                            if($post_link) $output .= '<a class="content-bucket-link" href="'.$post_link.'">';
+                            $output .= "\t".get_the_post_thumbnail(get_the_ID(), 'full');
+                            $output .= "\t".'<div class="inside">'.wpautop(get_the_content()).'</div>'."\n";
+                            if($post_link) $output .= '</a>';
+                        }
+
+                        if ( is_user_logged_in() ) $output .= "\t".'<a class="post-edit-link" href="'.get_edit_post_link( get_the_ID() ).'">Edit</a>'."\n";
+
+                        $output .= '</li><!--'."\n";
+                        $post_link = '';
+
+                    break;
+
+                }
+
+            $newline = '';
+
+            endwhile;
+
+            wp_reset_query();
+
+        break;
+
+        case 'feature' :
+
+            $posts = wpba_get_attachments();
+
+            foreach($posts as $post){
+
+                $output .= '--><li class="'.$area.' '.$style.'-bucket content-bucket '.$span.' '.$newline.'">'."\n";
+                $output .= '<div class="entry-summary">';
+                $output .= "\t".wp_get_attachment_image($post->ID, 'full' );
+                $output .= "\t".'<div class="summary">'.wpautop($post->post_excerpt).'</div>'."\n";
+                $output .= '</div>';
+                $output .= '</li><!--'."\n";
+
+                $newline = '';
+
+            }
+
         break;
 
     }
-
-	
-	while ( $posts->have_posts() ) : $posts->the_post();
-
-		switch($style){
-			
-			case 'menu' :
-			
-				$post_link = get_post_meta( get_the_ID(), '_post_link_url', true );
-				$output .= '--><li class="'.$area.' '.$style.'-bucket content-bucket '.$span.' '.$newline.'">'."\n";
-				if($post_link) $output .= '<a class="content-bucket-link" href="'.$post_link.'">';
-				$output .= "\t".'<div class="inside">'.wpautop(get_the_content()).'</div>'."\n";
-				$output .= "\t".get_the_post_thumbnail(get_the_ID(), 'full');
-				if($post_link) $output .= '</a>';
-				if ( is_user_logged_in() ) $output .= "\t".'<a class="post-edit-link" href="'.get_edit_post_link( get_the_ID() ).'">Edit</a>'."\n";
-				$output .= '</li><!--'."\n";
-				$post_link = '';
-			
-			break;
-
-			case 'feature' :
-
-			    $post_link = get_permalink( get_the_ID() );
-
-				$output .= '--><li class="'.$area.' '.$style.'-bucket content-bucket '.$span.' '.$newline.'">'."\n";
-
-                //if($post_link) $output .= '<a class="content-bucket-link" href="'.$post_link.'" rel="bookmark">';
-                $output .= '<div class="entry-summary">';
-                $output .= "\t".get_the_post_thumbnail(get_the_ID(), 'full');
-                $output .= "\t".'<div class="summary">'.wpautop(get_the_content()).'</div>'."\n";
-                $output .= '</div>';
-                //if($post_link) $output .= '</a>';
-
-				if ( is_user_logged_in() ) $output .= "\t".'<a class="post-edit-link" href="'.get_edit_post_link( get_the_ID() ).'">Edit</a>'."\n";
-
-				$output .= '</li><!--'."\n";
-				$post_link = '';
-
-			break;
-			
-			default :
-	
-				$post_link = get_post_meta( get_the_ID(), '_post_link_url', true );
-				$output .= '--><li class="'.$area.' '.$style.'-bucket content-bucket '.$span.' '.$newline.'">'."\n";
-	
-				if($area == 'news-ticker-buckets'){
-					if($post_link) $output .= '<a class="content-bucket-link span7" href="'.$post_link.'">';
-					$output .= '<span class="redBox">'. get_post_meta( get_the_ID(), '_content_redbox', true ) .'</span>';
-					$output .= '<b>'.get_the_title().': </b>'.get_the_content();
-					if($post_link) $output .= '</a>';
-				}else{
-					if($post_link) $output .= '<a class="content-bucket-link" href="'.$post_link.'">';
-					$output .= "\t".get_the_post_thumbnail(get_the_ID(), 'full');
-					$output .= "\t".'<div class="inside">'.wpautop(get_the_content()).'</div>'."\n";
-					if($post_link) $output .= '</a>';
-				}
-				
-				if ( is_user_logged_in() ) $output .= "\t".'<a class="post-edit-link" href="'.get_edit_post_link( get_the_ID() ).'">Edit</a>'."\n";
-				
-				
-				
-				
-				
-				$output .= '</li><!--'."\n";
-				$post_link = '';
-			
-			break;
-	
-		}
-		
-		$newline = '';
-	
-	endwhile;
-	
-	wp_reset_query();
 	
 	if($output == '') return ''; 
 
