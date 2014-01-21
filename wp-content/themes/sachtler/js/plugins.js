@@ -1182,7 +1182,7 @@ $(function() {
         if($(this).hasClass("span3") && !$(this).prevAll().hasClass("span9")){
 
             $('.elastislide-nav').fadeOut();
-            $(this).nextAll( ".new-line" ).switchClass("new-line","no-new-line");
+            $(this).nextAll( ".new-line" ).removeClass("new-line");
 
             if($(this).prevAll().hasClass("span3") && !($(this).hasClass('new-line'))){
                 $(this).prevAll('.span3').hide(duration, function() {
@@ -1194,11 +1194,11 @@ $(function() {
         } else {
             $('li.feature-summary .summary').fadeOut();
             $( "li.feature-summary.span9" ).switchClass( "span9", "span3", duration, function() {
-                $(currentItem).removeClass( "new-line");
+                $(this).removeClass( "new-line");
                 $(currentItem).prevAll('.span3').show(duration, function() {
-                    $('.elastislide-nav').fadeIn();
-                    $(currentItem).nextAll('.no-new-line').switchClass("no-new-line","new-line");
+                    $( "li.feature-summary:nth-child(5)" ).addClass( "new-line");
                 });
+                $('.elastislide-nav').fadeIn();
 
 
             });
