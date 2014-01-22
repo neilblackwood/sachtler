@@ -1172,15 +1172,14 @@ $(function() {
         $(this).removeAttr('style');
 
         function switchItem() {
-
             $(currentItem).addClass( "new-line");
             $(currentItem).switchClass( "span3", "span9", duration, function() {
-                $(currentItem).find('.summary').fadeIn("slow")
+                $(currentItem).find('.summary').fadeIn("slow");
+                    $('<span class="close-button">Close</span>').hide().appendTo(currentItem).fadeIn(duration);
             });
         }
 
         if($(this).hasClass("span3") && !$(this).prevAll().hasClass("span9")){
-
             $('.elastislide-nav').fadeOut();
             $(this).nextAll( ".new-line" ).removeClass("new-line");
 
@@ -1193,6 +1192,9 @@ $(function() {
             }
         } else {
             $('li.feature-summary .summary').fadeOut();
+            $('li.feature-summary span.close-button').fadeOut(duration, function() {
+                $(this).remove();
+            });
             $( "li.feature-summary.span9" ).switchClass( "span9", "span3", duration, function() {
                 $(this).removeClass( "new-line");
                 $(currentItem).prevAll('.span3').show(duration);
@@ -1203,4 +1205,5 @@ $(function() {
 
         return false;
     });
+
 });

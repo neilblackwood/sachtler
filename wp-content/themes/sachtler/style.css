@@ -119,7 +119,35 @@ textarea:focus,
 button:focus {
     outline: none;
 }
-
+.close-button {
+    top: 5px;
+    position: absolute;
+    right: 5px;
+    -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+    box-shadow:inset 0px 1px 0px 0px #ffffff;
+    background-color:#ffffff;
+    -webkit-border-top-left-radius:5px;
+    -moz-border-radius-topleft:5px;
+    border-top-left-radius:5px;
+    -webkit-border-top-right-radius:5px;
+    -moz-border-radius-topright:5px;
+    border-top-right-radius:5px;
+    -webkit-border-bottom-right-radius:5px;
+    -moz-border-radius-bottomright:5px;
+    border-bottom-right-radius:5px;
+    -webkit-border-bottom-left-radius:5px;
+    -moz-border-radius-bottomleft:5px;
+    border-bottom-left-radius:6px;
+    border:1px solid #ffffff;
+    display:inline-block;
+    color:#818E97;
+    font-size:12px;
+    height:20px;
+    line-height:20px;
+    width:50px;
+    text-align:center;
+}
 .mobile-only {display:none;}
 .desktop-only {display:inherit;}
 
