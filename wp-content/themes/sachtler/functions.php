@@ -2599,6 +2599,36 @@ function get_related_products($id) {
 	}
 
 }
+
+function get_equipment_list() {
+
+    $related_products = MRP_get_related_posts( get_the_id(), true, true, 'wpsc-product');
+
+    $output .= "<div class=\"feature-equipment\">\n";
+    $output .= "<h3>Equipment</h3>\n";
+
+    $category = 0;
+
+    foreach($related_products as $product) {
+        $associatedCats = get_the_product_category($product->ID);
+        if($associatedCats['0']->cat_ID!=$category){
+            if($category!=0){
+                $output .= "</p>\n";
+            }
+            $output .= "<p><strong>".$associatedCats['0']->cat_name."</strong><br>\n";
+            // set the category value to prevent duplicate category names being displayed.
+            $category = $associatedCats['0']->cat_ID;
+        }
+        $output .= "";
+        $output .= "<a href=\"".get_permalink( $product->ID )."\">".$product->post_title."</a><br>\n";
+    }
+
+    $output .= "</div>\n";
+    return $output;
+}
+
+add_shortcode( 'feature_equipment', 'get_equipment_list' );
+
 	
 function includeToString($filename) {
 	ob_start();

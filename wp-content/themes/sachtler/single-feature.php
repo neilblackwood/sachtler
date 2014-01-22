@@ -7,7 +7,7 @@ $feature_author = ($meta['_feature_author'][0] ? sprintf('<h2 class="feature-aut
 $feature_occupation = ($meta['_feature_occupation'][0] ? sprintf('<h2 class="feature-author-occupation">%1$s</h2>',$meta['_feature_occupation'][0]) : '');
 $feature_main_quote_author = ($meta['_feature_main_quote_author'][0] ? sprintf('<span class="feature-quote-author">%1$s</span>',$meta['_feature_main_quote_author'][0]) : '');
 $feature_main_quote = ($meta['_feature_main_quote'][0] ? sprintf('<div class="feature-quote sep"><hr>%1$s%2$s<hr></div>',wpautop($meta['_feature_main_quote'][0]),$feature_main_quote_author) : '<hr>');
-$feature_equipment = ($meta['_feature_equipment'][0] ? sprintf('<div class="feature-equipment"><h3>Equipment</h3>%1$s</div>',wpautop($meta['_feature_equipment'][0])) : '');
+$feature_equipment = do_shortcode('[feature_equipment]');
 $feature_supporting_copy = ($meta['_feature_supporting_copy'][0] ? sprintf('<div class="feature-supporting-copy">%1$s</div>',wpautop($meta['_feature_supporting_copy'][0])) : '');
 
 get_header(); ?>
