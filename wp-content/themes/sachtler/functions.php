@@ -1301,7 +1301,27 @@ function tech_metaboxes( $meta_boxes ) {
 			),
 		),
 	);
-	
+
+    // Product features tab
+
+    $meta_boxes[] = array(
+        'id' => 'wpsc-product-features',
+        'title' => 'Product features',
+        'pages' => array('wpsc-product'), // post type
+        'context' => 'normal',
+        'priority' => 'high',
+        'show_names' => false, // Show field names on the left
+        'fields' => array(
+            array(
+                'name'    => 'Product features text',
+                'desc'    => 'Text to display in the product features tab',
+                'id'      => '_product_features_text',
+                'type'    => 'wysiwyg',
+                'options' => array('textarea_rows' => 5, ),
+            ),
+        ),
+    );
+
 	$prefix = '_fluid_heads_tech_'; // Prefix for all fields
 	
 	$meta_boxes[] = array(

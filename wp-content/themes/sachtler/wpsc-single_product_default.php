@@ -144,7 +144,7 @@
                         </div><!-- close #product-tech-spec -->
                         
                         <div id="product-features" class="tab">
-                        	<p>Product features to go here...</p>
+                        	<p><?php echo(get_post_meta( wpsc_the_product_id(), '_product_features_text' , true )); ?></p>
                         </div><!-- close #product-features -->
                     
                     </div><!--close #product_tabs_col-->
