@@ -384,16 +384,16 @@ HEADER
 #primary-navigation ul.menu > li.active > a {color:black;}
 #primary-navigation ul.menu > li:hover,
 #primary-navigation ul.menu > li.active,
-#primary-navigation ul#menu-configurator li.active,
-#primary-navigation ul#menu-configurator li.active:hover {background: url(images/menu-arrow.gif) 50% bottom no-repeat;}
+#primary-navigation li.configurator.active,
+#primary-navigation li.configurator.active:hover {background: url(images/menu-arrow.gif) 50% bottom no-repeat;}
 #primary-navigation ul.menu > li.no-sub:hover,
 #primary-navigation ul.menu > li.no-sub.active {background:none;}
 
-#primary-navigation .menu-configurator-container {position: absolute; top: 0; right: 0;}
-#primary-navigation ul#menu-configurator li {float:right;margin-right:0;}
-#primary-navigation ul#menu-configurator a {background-color:white;border-radius:3px;font-size:0.778em;color:#E0001B;line-height:2.143em;height:2.143em;margin:0.893em 0;padding:0 1.200em;}
-#primary-navigation ul#menu-configurator a:hover {color:black;background-image:none;}
-#primary-navigation ul#menu-configurator li:hover {background-image:none;}
+#primary-navigation .menu div {position: absolute; top: 0; right: 0;}
+#primary-navigation #primary-menu li.configurator {float:right;margin-right:0;}
+#primary-navigation #primary-menu li.configurator a {background-color:white;border-radius:3px;font-size:0.778em;color:#E0001B;line-height:2.143em;height:2.143em;margin:0.893em 0;padding:0 1.200em;}
+#primary-navigation #primary-menu li.configurator a:hover {color:black;background-image:none;}
+#primary-navigation #primary-menu li.configurator:hover {background-image:none;}
 
 #primary-sub-navigation .menu-promo-area {display:none;/*font-size:0.800em;*/}
 #primary-sub-navigation .menu-promo-area .inside,
@@ -856,7 +856,7 @@ PAGE SPECIFIC CSS
 .feature-quote p {font-size:2em;margin:0.5em 0;}
 .feature-quote-author {font-size:0.867em;color:black;}
 
-.feature-summary .summary {display:none; padding:15px 0 0;}
+.feature-summary .summary {display:none;}
 
 #feature-equipment-col {background-color:#ECEDF1;}
 .feature-equipment {padding:1em;}

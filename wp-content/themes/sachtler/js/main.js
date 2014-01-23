@@ -11,12 +11,12 @@ $(document).ready(function(){
 	
 	var animDuration = 300, topMenuContentHeight = 212;
 	// ==== main menu 
-	$('#menu-primary li').on({
+	$('#primary-menu > ul li').on({
 		mouseenter: function(){
 			$('.menuwrapper').data('entered',true);
 		
 			var obj = $(this);
-			$('#menu-primary li').each(function() { //update active class on the tab
+			$('#primary-menu > ul li').each(function() { //update active class on the tab
 				if(obj != $(this)) $(this).removeClass('active');
 			});	
 			obj.addClass('active');
@@ -25,10 +25,10 @@ $(document).ready(function(){
 			});	
 			$('#primary-sub-menu .'+$(this).attr('id')).show();// display tab content
 			
-			$('#menu-configurator .configurator').removeClass('active');// update configurator button
+			$('#primary-menu li.configurator').removeClass('active');// update configurator button
 		}
 	});
-	$('#menu-primary').on({
+	$('#primary-menu > ul').on({
 		mouseenter: function(){
 			
 			setTimeout(function(){
@@ -42,18 +42,18 @@ $(document).ready(function(){
 	$('.menuwrapper').on({
 		mouseleave: function() {
 			$(this).data('entered',false);
-			if(!$('#menu-configurator .configurator').is('.active')){$('#primary-sub-navigation').stop( true, true ).animate({height: 0},animDuration);}
-			$('#menu-primary li.active').removeClass('active');
+			if(!$('#primary-menu li.configurator').is('.active')){$('#primary-sub-navigation').stop( true, true ).animate({height: 0},animDuration);}
+			$('#primary-menu > ul li.active').removeClass('active');
 		}
 	});
 
 	// ==== configurator button
-	$('#menu-configurator li.configurator').on({
+	$('#primary-menu li.configurator').on({
 		click: function(){
 			$(this).toggleClass('active');
 			if($(this).is('.active')){
 				$('#primary-sub-navigation').css({'overflow':'hidden'}).stop( true, true ).animate({height: topMenuContentHeight}, animDuration);
-				$('#menu-primary li.active').removeClass('active');
+				$('#primary-menu > ul li.active').removeClass('active');
 				$('#primary-sub-menu > *').hide().parent().find('.configurator').show();// display tab content
 				
 			}else{
@@ -68,7 +68,7 @@ $(document).ready(function(){
 	
 	
 	if($('#page-content.product-configurator').length){
-		$('#menu-configurator li.configurator').click();
+		$('#primary-menu li.configurator').click();
 	}
 	
 	$('.bucket-widget-area .slider').each(function(){
