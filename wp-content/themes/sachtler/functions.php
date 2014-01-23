@@ -2610,7 +2610,17 @@ function get_related_products($id) {
 			}
 			$code = wpsc_product_sku( $recommended_product->ID );
 			if($code) $code = sprintf('<p><span class="product-sku-label">Code</span><span class="product-sku">%1$s</span></p>',$code);
-			echo '--><li class="span2'.$newline.'"><a href="'.get_permalink( $recommended_product->ID ).'"><img src="'.wpsc_the_product_thumbnail(200,200,$recommended_product->ID,'single').'"/>'.$material.'<p>'.$recommended_product->post_title.'</p>'.$code.'</a></li><!--';
+
+            // if accessories category output category URL rather than product url
+            $currentCat = get_the_product_category($recommended_product->ID);
+            $accessoriesID = 23;
+            if($currentCat[0]->cat_ID==$accessoriesID){
+                $link = wpsc_category_url(intval($currentCat[0]->cat_ID));
+            } else {
+                $link = get_permalink( $recommended_product->ID );
+            }
+
+			echo '--><li class="span2'.$newline.'"><a href="'.$link.'"><img src="'.wpsc_the_product_thumbnail(200,200,$recommended_product->ID,'single').'"/>'.$material.'<p>'.$recommended_product->post_title.'</p>'.$code.'</a></li><!--';
 			$i++;
 		}
 		echo '--></ul>';
@@ -2640,7 +2650,16 @@ function get_equipment_list() {
             $category = $associatedCats['0']->cat_ID;
         }
         $output .= "";
-        $output .= "<a href=\"".get_permalink( $product->ID )."\">".$product->post_title."</a><br>\n";
+
+        // if accessories category output category URL rather than product url
+        $accessoriesID = 23;
+        if($associatedCats['0']->cat_ID==$accessoriesID){
+            $link = wpsc_category_url(intval($associatedCats['0']->cat_ID));
+        } else {
+            $link = get_permalink( $product->ID );
+        }
+
+        $output .= "<a href=\"".$link."\">".$product->post_title."</a><br>\n";
     }
 
     $output .= "</div>\n";
