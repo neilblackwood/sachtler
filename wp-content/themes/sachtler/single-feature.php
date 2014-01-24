@@ -26,10 +26,7 @@ get_header(); ?>
     </div><!-- #feature-content-col -->
 </div>
 <div class="sep">
-	<h2>Get more impressions</h2>
-    <div id="feature-associated-bucket" class="bucket-widget-area">
-        <?php echo do_shortcode('[content area="feature-summary" style="feature" span="span3"]'); ?>
-    </div>
+    <?php echo do_shortcode('[content area="feature-summary" style="feature" span="span3"]'); ?>
     <!--<?php /* $query = new WP_Query( array( 'post_type' => array('feature'), 'posts_per_page' => 12,'orderby' => 'date', 'order' => 'ASC', 'post__not_in' => array(get_the_id())));
 	$classes = array('span3','new-line','feature-summary');
 	while ( $query->have_posts() ) : $query->the_post(); ?>
