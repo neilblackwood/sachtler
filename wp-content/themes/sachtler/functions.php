@@ -1173,33 +1173,42 @@ function get_content_bucket( $atts, $content = null ) {
 
             wp_reset_query();
 
+            if($output == '') return '';
+
+            return '<ul class="slider"><!--'.$output.'--></ul>';
+
         break;
 
         case 'feature' :
 
             $posts = wpba_get_attachments();
 
-            foreach($posts as $post){
+            if($posts){
 
-                $output .= '--><li class="'.$area.' '.$style.'-bucket content-bucket '.$span.' '.$newline.'">'."\n";
-                $output .= '<div class="entry-summary">';
-                $output .= "\t".wp_get_attachment_image($post->ID, 'full' );
-                $output .= "\t".'<div class="summary">'.wpautop($post->post_excerpt).'</div>'."\n";
-                $output .= '</div>';
-                $output .= '</li><!--'."\n";
+                foreach($posts as $post){
 
-                $newline = '';
+                    $output .= '--><li class="'.$area.' '.$style.'-bucket content-bucket '.$span.' '.$newline.'">'."\n";
+                    $output .= '<div class="entry-summary">';
+                    $output .= "\t".wp_get_attachment_image($post->ID, 'full' );
+                    $output .= "\t".'<div class="summary">'.wpautop($post->post_excerpt).'</div>'."\n";
+                    $output .= '</div>';
+                    $output .= '</li><!--'."\n";
+
+                    $newline = '';
+
+                }
 
             }
+
+            if($output == '') return '';
+
+            $htmlWrapOpen = '<h2>Get more impressions</h2><div id="feature-associated-bucket" class="bucket-widget-area"><ul class="slider"><!--';
+            $htmlWrapClose = '--></ul></div>';
+            return $htmlWrapOpen.$output.$htmlWrapClose;
 
         break;
 
     }
-	
-	if($output == '') return ''; 
-
-	return '<ul class="slider"><!--'.$output.'--></ul>';
-
 }
 
 add_shortcode( 'content', 'get_content_bucket' );
@@ -1941,14 +1950,20 @@ function tech_metaboxes( $meta_boxes ) {
 				'type'    => 'text',
 			),
 			array(
-				'name'    => 'Equipment list',
-				'desc'    => 'List the equipment used in this feature, be careful to maintain correct formatting',
-				'id'      => $prefix . 'equipment',
+				'name'    => 'Equipment list title',
+				'desc'    => 'Enter a title for the equipment list',
+				'id'      => $prefix . 'equipment_title',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Equipment list description',
+				'desc'    => 'Give a brief description for the equipment used in this feature',
+				'id'      => $prefix . 'equipment_desc',
 				'type'    => 'wysiwyg',
 				'options' => array(
 					'wpautop' => true, // use wpautop?
 					'media_buttons' => false, // show insert/upload button(s)
-					'textarea_name' => $prefix . 'equipment', // set the textarea name to something different, square brackets [] can be used here
+					'textarea_name' => $prefix . 'equipment_desc', // set the textarea name to something different, square brackets [] can be used here
 					'textarea_rows' => get_option('default_post_edit_rows', 10), // rows="..."
 					'tabindex' => '',
 					'editor_css' => '', // intended for extra styles for both visual and HTML editors buttons, needs to include the <style> tags, can use "scoped".
@@ -1981,6 +1996,22 @@ function tech_metaboxes( $meta_boxes ) {
 		),
 	);
 
+    $meta_boxes[] = array(
+        'id' => 'feature_equipment_title',
+        'title' => 'Feature equipment list title',
+        'pages' => array('feature'), // post type
+        'context' => 'normal',
+        'priority' => 'high',
+        'show_names' => true, // Show field names on the left
+        'fields' => array(
+            array(
+                'name'    => 'AFeature equipment list title',
+                'desc'    => 'Enter the name of the author of this feature',
+                'id'      => $prefix . 'author',
+                'type'    => 'text',
+            ),
+        ),
+    );
 
 
 
@@ -2633,36 +2664,48 @@ function get_related_products($id) {
 function get_equipment_list() {
 
     $related_products = MRP_get_related_posts( get_the_id(), true, true, 'wpsc-product');
+    $output .= "";
 
-    $output .= "<div class=\"feature-equipment\">\n";
-    $output .= "<h3>Equipment</h3>\n";
+    if($related_products){
+        $output .= "<div class=\"feature-equipment\">\n";
+        $meta = get_post_meta( get_the_id());
 
-    $category = 0;
-
-    foreach($related_products as $product) {
-        $associatedCats = get_the_product_category($product->ID);
-        if($associatedCats['0']->cat_ID!=$category){
-            if($category!=0){
-                $output .= "</p>\n";
-            }
-            $output .= "<p><strong>".$associatedCats['0']->cat_name."</strong><br>\n";
-            // set the category value to prevent duplicate category names being displayed.
-            $category = $associatedCats['0']->cat_ID;
-        }
-        $output .= "";
-
-        // if accessories category output category URL rather than product url
-        $accessoriesID = 23;
-        if($associatedCats['0']->cat_ID==$accessoriesID){
-            $link = wpsc_category_url(intval($associatedCats['0']->cat_ID));
+        if($meta['_feature_equipment_title'][0]){
+            $output .= ($meta['_feature_equipment_title'][0] ? sprintf('<h3>%1$s</h3>',wpautop($meta['_feature_equipment_title'][0])) : '');
         } else {
-            $link = get_permalink( $product->ID );
+            $output .= "<h3>Equipment</h3>\n";
+        }
+        if($meta['_feature_equipment_desc'][0]){
+            $output .= ($meta['_feature_equipment_desc'][0] ? sprintf('<p>%1$s</p>',wpautop($meta['_feature_equipment_desc'][0])) : '');
         }
 
-        $output .= "<a href=\"".$link."\">".$product->post_title."</a><br>\n";
-    }
+        $category = 0;
 
-    $output .= "</div>\n";
+        foreach($related_products as $product) {
+            $associatedCats = get_the_product_category($product->ID);
+            if($associatedCats['0']->cat_ID!=$category){
+                if($category!=0){
+                    $output .= "</p>\n";
+                }
+                $output .= "<p><strong>".$associatedCats['0']->cat_name."</strong><br>\n";
+                // set the category value to prevent duplicate category names being displayed.
+                $category = $associatedCats['0']->cat_ID;
+            }
+            $output .= "";
+
+            // if accessories category output category URL rather than product url
+            $accessoriesID = 23;
+            if($associatedCats['0']->cat_ID==$accessoriesID){
+                $link = wpsc_category_url(intval($associatedCats['0']->cat_ID));
+            } else {
+                $link = get_permalink( $product->ID );
+            }
+
+            $output .= "<a href=\"".$link."\">".$product->post_title."</a><br>\n";
+        }
+
+        $output .= "</div>\n";
+    }
     return $output;
 }
 
