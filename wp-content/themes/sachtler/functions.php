@@ -156,6 +156,13 @@ register_sidebar( array (
 'before_widget' => '',
 'after_widget' => '',
 ));
+register_sidebar( array (
+'name' => __('Footer: Language area', 'blankslate'),
+'id' => 'footer-language-area',
+'description' => 'Language area',
+'before_widget' => '',
+'after_widget' => '',
+));
 }
 $preset_widgets = array (
 'primary-aside'  => array( 'search', 'pages', 'categories', 'archives' ),
@@ -2102,12 +2109,12 @@ function get_facebook_feed($span) {
 	
 	
 	$div = $doc->createElement('div');
-	$div->setAttribute('class','rfb_main_link'.' span12');
+	$div->setAttribute('class','rfb_main_link');
 
 	
 
 	$socialBt = $doc->createElement('div');
-	$socialBt->setAttribute('class','socialButtons span6 right');
+	$socialBt->setAttribute('class','socialButtons');
 
 	$Twitter = $doc->createElement('a');
 	$Twitter->setAttribute('title', 'Twitter');
@@ -2154,7 +2161,10 @@ function get_facebook_feed($span) {
     */
 	
 	$div->appendChild($socialBt);
-	
+
+    $postWrapper = $doc->createElement('div');
+    $postWrapper->setAttribute('class','span8 center');
+
 	$posts->item(0)->parentNode->insertBefore($div,$posts->item(0));
 	$posts->item(0)->setAttribute('class',$posts->item(0)->getAttribute('class').' new-line');
 	
@@ -2173,12 +2183,15 @@ function get_facebook_feed($span) {
 		//$like->setAttribute('href','http://facebook.com/plugins/like.php?href='.urlencode($url));
 		//$link->parentNode->appendChild($like);
 	}
+
+	$postWrapper->appendChild($posts->item(0));
+	$div->appendChild($postWrapper);
 	
 	//$output = str_replace('rfb-post','rfb-post '.$span,$doc->saveHTML());
 	
 	$output =  $doc->saveHTML() ;
 
-	return 	'<div class="center span12"><div class="span8 center">' .$output . '</div></div>';
+	return $output;
 }
 
 
