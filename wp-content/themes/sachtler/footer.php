@@ -38,7 +38,7 @@
                 <div id="footer-language" class="menu span2 right">
                     <?php dynamic_sidebar('footer-language-area'); ?>
                     <?php //wp_nav_menu( array( 'theme_location' => 'footer-widget-menu', 'walker' => new Sachtler_Walker, 'items_wrap' => '<ul id="%1$s" class="%2$s"><li>'.get_the_title(106).'</li><!--%3$s--></ul>', 'container' => false, ) ); ?>
-                </div><!-- #footer-language -->
+                </div><!-- #footer-language-area -->
             </div><!-- .span12 -->
         </div><!-- .wrapper -->
     </div><!-- .row -->
