@@ -986,7 +986,7 @@ function codex_custom_init() {
 	'query_var' => true,
 	'rewrite' => array( 'slug' => 'dealer' ),
 	'capability_type' => 'post',
-	'taxonomies' => array( 'continent','country' ),
+	'taxonomies' => array( 'continent','country','brands' ),
 	'has_archive' => true, 
 	'hierarchical' => false,
 	'menu_position' => 20,
@@ -1040,6 +1040,29 @@ function codex_custom_init() {
 	);
 
 	register_taxonomy( 'country', array( 'dealer' ), $tax_args );
+	
+	$tax_labels = array(
+		'name'              => _x( 'Brands', 'taxonomy general name' ),
+		'singular_name'     => _x( 'Brand', 'taxonomy singular name' ),
+		'search_items'      => __( 'Search Brands' ),
+		'all_items'         => __( 'All Brands' ),
+		'edit_item'         => __( 'Edit Brand' ),
+		'update_item'       => __( 'Update Brand' ),
+		'add_new_item'      => __( 'Add New Brand' ),
+		'new_item_name'     => __( 'New Brand' ),
+		'menu_name'         => __( 'Videocom Brands' ),
+	);
+
+	$tax_args = array(
+		'hierarchical'      => true,
+		'labels'            => $tax_labels,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'query_var'         => true,
+		'rewrite'           => array( 'slug' => 'brand' ),
+	);
+
+	register_taxonomy( 'brands', array( 'dealer' ), $tax_args );
 }
 add_action( 'init', 'codex_custom_init' );
 
@@ -2099,9 +2122,54 @@ function tech_metaboxes( $meta_boxes ) {
             ),
         ),
     );
-
-
-
+	
+	$prefix = '_dealer_'; // Prefix for all fields
+	
+	$meta_boxes[] = array(
+		'id' => 'dealer_metabox',
+		'title' => 'Dealer details',
+		'pages' => array('dealer'), // post type
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name'    => 'Partnership',
+				'desc'    => 'Select the dealer relationship',
+				'id'      => $prefix . 'partner',
+				'type'    => 'radio',
+				'options' => array(
+					array( 'name' => 'Standard Partner', 'value' => 'standard', ),
+					array( 'name' => 'Platinum Partner', 'value' => 'platinum', ),
+				),
+			),
+			array(
+				'name'    => 'Address',
+				'id'      => $prefix . 'address',
+				'type'    => 'textarea',
+			),
+			array(
+				'name'    => 'Telephone',
+				'id'      => $prefix . 'tel',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Fax',
+				'id'      => $prefix . 'fax',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Email',
+				'id'      => $prefix . 'email',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Website',
+				'id'      => $prefix . 'web',
+				'type'    => 'text',
+			),
+		),
+	);
 
 	$prefix = '_content_'; // Prefix for all fields
 	
