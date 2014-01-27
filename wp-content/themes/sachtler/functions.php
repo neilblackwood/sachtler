@@ -2103,24 +2103,41 @@ function get_facebook_feed($span) {
 	
 	$div = $doc->createElement('div');
 	$div->setAttribute('class','rfb_main_link'.' span12');
-	$link = $doc->createElement('a','facebook.com/'.$options['fb_id']);
-	$link->setAttribute('href','http://facebook.com/'.$options['fb_id']);
-	$link->setAttribute('target','_blank');
-	$link->setAttribute('class','facebook-link');
+
 	
-	$div->appendChild($link);
-	
-	
+
 	$socialBt = $doc->createElement('div');
-	$socialBt->setAttribute('class','socialButtons span4 right');
-	
-	$Twitter = $doc->createElement('a','twitter'.$options['tw_id']);
+	$socialBt->setAttribute('class','socialButtons span6 right');
+
+	$Twitter = $doc->createElement('a');
+	$Twitter->setAttribute('title', 'Twitter');
 	$Twitter->setAttribute('href','http://twitter.com/'.$options['tw_id']);
 	$Twitter->setAttribute('target','_blank');
 	$Twitter->setAttribute('class','twitter-link');
 	$socialBt->appendChild($Twitter);
 
-	
+    $Pinterest = $doc->createElement('a');
+    $Pinterest->setAttribute('title', 'Pinterest');
+    $Pinterest->setAttribute('href','http://www.pinterest.com/'.$options['pi_id']);
+    $Pinterest->setAttribute('target','_blank');
+    $Pinterest->setAttribute('class','pinterest-link');
+    $socialBt->appendChild($Pinterest);
+
+    $GooglePlus = $doc->createElement('a');
+    $GooglePlus->setAttribute('title', 'Google+');
+    $GooglePlus->setAttribute('href','https://plus.google.com/'.$options['pi_id']);
+    $GooglePlus->setAttribute('target','_blank');
+    $GooglePlus->setAttribute('class','google-link');
+    $socialBt->appendChild($GooglePlus);
+
+
+	$Facebook = $doc->createElement('a','facebook.com/'.$options['fb_id']);
+	$Facebook->setAttribute('href','http://facebook.com/'.$options['fb_id']);
+	$Facebook->setAttribute('target','_blank');
+	$Facebook->setAttribute('class','facebook-link');
+	$socialBt->appendChild($Facebook);
+
+	/*
 	$Youtube = $doc->createElement('a','Youtube'.$options['tw_id']);
 	$Youtube->setAttribute('href','http://youtube.com/'.$options['tw_id']);
 	$Youtube->setAttribute('target','_blank');
@@ -2134,6 +2151,7 @@ function get_facebook_feed($span) {
 	$Instagram->setAttribute('class','Instagram-link');
 	$socialBt->appendChild($Instagram);
 
+    */
 	
 	$div->appendChild($socialBt);
 	
@@ -2160,7 +2178,7 @@ function get_facebook_feed($span) {
 	
 	$output =  $doc->saveHTML() ;
 
-	return 	'<div class="center span12"><div class="span8 center">' .$output . '</div></div>'; 
+	return 	'<div class="center span12"><div class="span8 center">' .$output . '</div></div>';
 }
 
 

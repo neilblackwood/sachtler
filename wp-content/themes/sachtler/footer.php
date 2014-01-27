@@ -1,5 +1,17 @@
 <div class="clear"></div>
 </div><!-- .wrapper -->
+<?php if(is_front_page()){?>
+<div id="intro-text">
+    <div class="row">
+        <div class="wrapper">
+            <div class="span12">
+                <?php dynamic_sidebar('footer-widget'); ?>
+            </div><!-- .span12 -->
+        </div><!-- .wrapper -->
+    </div><!-- .row -->
+</div><!-- #intro-text -->
+<div class="clear"></div>
+<?php } ?>
 </div><!-- #page-content -->
 <footer>
 <div id="facebook-feed">
@@ -13,19 +25,19 @@
 	</div><!-- .row -->
 </div><!-- #facebook-feed -->  
 
-
-  
-<div id="intro-text">
+<div id="footer-menu">
     <div class="row">
         <div class="wrapper">
             <div class="span12">
-                <?php dynamic_sidebar('footer-widget'); ?>
                 <div id="copyright">
                 <p><?php echo sprintf( __( '%1$s %2$s %3$s. All Rights Reserved.', 'blankslate' ), '&copy;', date('Y'), esc_html(get_bloginfo('name')) ); echo sprintf( __( ' Site by %1$s', 'blankslate' ), '<a href="http://designmotive.co.uk/">Design Motive</a>' ); ?></p>
+                </div>
             </div><!-- .span12 -->
         </div><!-- .wrapper -->
     </div><!-- .row -->
-</div><!-- #intro-text -->    
+</div><!-- #footer-menu -->
+
+
 </footer>
 <?php wp_footer(); ?>
 </body>

@@ -768,21 +768,24 @@ FOOTER
 
 
 footer #facebook-feed {background-color: #ECEDF1;}
-footer #intro-text {background-color:white;}
+#page-content #intro-text, footer #intro-text {background-color:white;}
 
 footer a {text-decoration:none;color:black;}
 footer a:hover {text-decoration:underline;}
 
-footer #facebook-feed .rfb_main_link a {display:inline-block; background:url(images/facebook-logo.png) top left no-repeat; padding-left:40px;height:30px;line-height:30px;font-size:0.8em;margin:2em 0;}
-footer #facebook-feed p{	margin: 1em 0 0 0;}
+footer #facebook-feed .rfb_main_link a {display:inline-block; background:url(images/facebook-logo.png) top right no-repeat; padding-right:50px;height:30px;line-height:30px;font-size:0.8em;margin:2em 0;margin-right: 34px;}
+footer #facebook-feed p{margin: 1em 0 0 0;}
 footer #facebook-feed .rfb_image {float:left;margin:0 2% 0 0; width: 16%;}
 footer #facebook-feed .rfb_text {margin-top:0; display: table; float: right; width: 82%;}
 
 footer #facebook-feed a.rfb_link:hover,
 footer #facebook-feed a.rfb_link:hover * { text-decoration: none!important; cursor: text; /*background-color:white; border-radius:3px; color:#818E97; padding:0.25em 0.5em;*/}
 /*footer #facebook-feed a.rfb_link:hover {background-color:#818E97; color:white;text-decoration:none;}*/
+footer #facebook-feed a.twitter-link {padding-left:52px; margin-right: 0; padding-right:0px; background:url(images/twitter-logo.png) top left no-repeat;}
+footer #facebook-feed a.pinterest-link {padding-left:52px; margin-right: 0; padding-right:0px; height:32px; margin: 1.9em 0; background:url(images/pinterest-logo.png) top left no-repeat;}
+footer #facebook-feed a.google-link {padding-left:52px; margin-right: 0; padding-right:0px; background:url(images/google+logo.png) top left no-repeat;}
 
-footer #intro-text .textwidget {margin:2em 0; padding-bottom:2em;line-height:1.667em;font-size:1.2em;background:url(images/its-about-you.png) bottom right no-repeat;}
+#page-content #intro-text .textwidget, footer #intro-text .textwidget {margin:2em 0; padding-bottom:2em;line-height:1.667em;font-size:1.2em;background:url(images/its-about-you.png) bottom right no-repeat;}
 
 footer #intro-text #copyright {margin:2em 0;}
 
