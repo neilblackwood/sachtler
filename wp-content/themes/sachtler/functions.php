@@ -961,6 +961,9 @@ function codex_custom_init() {
 
 	register_taxonomy( 'bucket', array( 'content' ), $tax_args );
 	
+	
+	// DEALER POST TYPE 
+	
 	$labels = array(
 	'name' => 'Dealers',
 	'singular_name' => 'Dealer',
@@ -1063,10 +1066,183 @@ function codex_custom_init() {
 	);
 
 	register_taxonomy( 'brands', array( 'dealer' ), $tax_args );
+	
+	
+	
+	// EVENT POST TYPE 
+	
+	
+	$labels = array(
+	'name' => 'Events',
+	'singular_name' => 'Event',
+	'add_new' => 'Add New',
+	'add_new_item' => 'Add New Event',
+	'edit_item' => 'Edit Event',
+	'new_item' => 'New Event',
+	'all_items' => 'All Events',
+	'view_item' => 'View Event',
+	'search_items' => 'Search Events',
+	'not_found' =>  'No Events found',
+	'not_found_in_trash' => 'No Events found in Trash', 
+	'parent_item_colon' => '',
+	'menu_name' => 'Events'
+	);
+	
+	$args = array(
+	'labels' => $labels,
+	'public' => false,
+	'publicly_queryable' => true,
+	'show_ui' => true, 
+	'show_in_menu' => true, 
+	'query_var' => true,
+	'rewrite' => array( 'slug' => 'event' ),
+	'capability_type' => 'post',
+	'taxonomies' => array( 'event_category', ),
+	'has_archive' => true, 
+	'hierarchical' => false,
+	'menu_position' => 20,
+	'supports' => array( 'title', 'editor', 'excerpt')
+	); 
+	
+	register_post_type( 'event', $args );
+	
+	$tax_labels = array(
+		'name'              => _x( 'Categories', 'taxonomy general name' ),
+		'singular_name'     => _x( 'Category', 'taxonomy singular name' ),
+		'search_items'      => __( 'Search Categories' ),
+		'all_items'         => __( 'All Categories' ),
+		'edit_item'         => __( 'Edit Category' ),
+		'update_item'       => __( 'Update Category' ),
+		'add_new_item'      => __( 'Add New Category' ),
+		'new_item_name'     => __( 'New Category' ),
+		'menu_name'         => __( 'Categories' ),
+	);
+
+	$tax_args = array(
+		'hierarchical'      => true,
+		'labels'            => $tax_labels,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'query_var'         => true,
+		'rewrite'           => array( 'slug' => 'event_category' ),
+	);
+
+	register_taxonomy( 'event_category', array( 'event' ), $tax_args );
+	
+	
+	
+	// PRESS SERVICE POST TYPE
+	
+	$labels = array(
+	'name' => 'Press Service',
+	'singular_name' => 'Press Release',
+	'add_new' => 'Add New',
+	'add_new_item' => 'Add New Press Release',
+	'edit_item' => 'Edit Press Release',
+	'new_item' => 'New Press Release',
+	'all_items' => 'All Press Releases',
+	'view_item' => 'View Press Release',
+	'search_items' => 'Search Press Releases',
+	'not_found' =>  'No Press Releases found',
+	'not_found_in_trash' => 'No Press Releases found in Trash', 
+	'parent_item_colon' => '',
+	'menu_name' => 'Press Service'
+	);
+	
+	$args = array(
+	'labels' => $labels,
+	'public' => false,
+	'publicly_queryable' => true,
+	'show_ui' => true, 
+	'show_in_menu' => true, 
+	'query_var' => true,
+	'rewrite' => array( 'slug' => 'press' ),
+	'capability_type' => 'post',
+	'taxonomies' => array( 'press_category', ),
+	'has_archive' => true, 
+	'hierarchical' => false,
+	'menu_position' => 20,
+	'supports' => array( 'title', 'editor', 'thumbnail', 'excerpt')
+	); 
+	
+	register_post_type( 'press', $args );
+	
+	$tax_labels = array(
+		'name'              => _x( 'Categories', 'taxonomy general name' ),
+		'singular_name'     => _x( 'Category', 'taxonomy singular name' ),
+		'search_items'      => __( 'Search Categories' ),
+		'all_items'         => __( 'All Categories' ),
+		'edit_item'         => __( 'Edit Category' ),
+		'update_item'       => __( 'Update Category' ),
+		'add_new_item'      => __( 'Add New Category' ),
+		'new_item_name'     => __( 'New Category' ),
+		'menu_name'         => __( 'Categories' ),
+	);
+
+	$tax_args = array(
+		'hierarchical'      => true,
+		'labels'            => $tax_labels,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'query_var'         => true,
+		'rewrite'           => array( 'slug' => 'press_category' ),
+	);
+
+	register_taxonomy( 'press_category', array( 'press' ), $tax_args );
 }
 add_action( 'init', 'codex_custom_init' );
 
 add_action( 'init', 'create_post_type' );
+
+
+// Rename Posts to News in Menu
+function change_post_menu_label() {
+    global $menu;
+    global $submenu;
+    $menu[5][0] = 'News';
+    $submenu['edit.php'][5][0] = 'News Items';
+    $submenu['edit.php'][10][0] = 'Add News Item';
+    echo '';
+}
+add_action( 'admin_menu', 'change_post_menu_label' );
+
+// Edit submenus
+function change_post_object_label() {
+        global $wp_post_types;
+        $labels = &$wp_post_types['post']->labels;
+        $labels->name = 'News';
+        $labels->singular_name = 'News Item';
+        $labels->add_new = 'Add News Item';
+        $labels->add_new_item = 'Add News Item';
+        $labels->edit_item = 'Edit News Item';
+        $labels->new_item = 'News Item';
+        $labels->view_item = 'View News Item';
+        $labels->search_items = 'Search News Items';
+        $labels->not_found = 'No News Items found';
+        $labels->not_found_in_trash = 'No News Items found in Trash';
+    }
+add_action( 'admin_menu', 'change_post_object_label' );
+
+// Remove Comments menu item for all but Administrators
+function remove_comments_menu_item() {
+	$user = wp_get_current_user();
+	if ( ! $user->has_cap( 'manage_options' ) ) {
+		remove_menu_page( 'edit-comments.php' );
+	}
+}
+add_action( 'admin_menu', 'remove_comments_menu_item' );
+
+// Move Pages above Media
+function change_menu_order( $menu_order ) {
+	return array( 
+       	'index.php', 
+       	'edit.php', 
+       	'edit.php?post_type=page',
+       	'upload.php',
+	);
+}
+add_filter( 'custom_menu_order', '__return_true' );
+add_filter( 'menu_order', 'change_menu_order' );
 
 //ADD FEATURE TAXONOMY
 add_action('init','register_features_taxonomy');
@@ -2167,6 +2343,58 @@ function tech_metaboxes( $meta_boxes ) {
 				'name'    => 'Website',
 				'id'      => $prefix . 'web',
 				'type'    => 'text',
+			),
+		),
+	);
+	
+	
+	$prefix = '_event_'; // Prefix for all fields
+	
+	$meta_boxes[] = array(
+		'id' => 'event_metabox',
+		'title' => 'Event details',
+		'pages' => array('event'), // post type
+		'context' => 'side',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name'    => 'Start',
+				'desc'    => 'The Event start date',
+				'id'      => $prefix . 'start',
+				'type'    => 'text_date',
+			),
+			array(
+				'name'    => 'End',
+				'desc'    => 'The Event end date',
+				'id'      => $prefix . 'end',
+				'type'    => 'text_date',
+			),
+			array(
+				'name'    => 'Location',
+				'id'      => $prefix . 'location',
+				'type'    => 'text',
+			),
+		),
+	);
+	
+	$prefix = '_press_'; // Prefix for all fields
+	
+	$meta_boxes[] = array(
+		'id' => 'press_metabox',
+		'title' => 'Press release details',
+		'pages' => array('press'), // post type
+		'context' => 'side',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name'    => 'PDF',
+				'desc'    => 'Upload or link to a downloadable PDF of this press release',
+				'id'      => $prefix . 'pdf',
+				'type'    => 'file',
+				'save_id' => false, // save ID using true
+				'allow'   => array( 'url', 'attachment' ) // limit to just attachments with array( 'attachment' )
 			),
 		),
 	);
