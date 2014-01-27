@@ -960,6 +960,86 @@ function codex_custom_init() {
 	);
 
 	register_taxonomy( 'bucket', array( 'content' ), $tax_args );
+	
+	$labels = array(
+	'name' => 'Dealers',
+	'singular_name' => 'Dealer',
+	'add_new' => 'Add New',
+	'add_new_item' => 'Add New Dealer',
+	'edit_item' => 'Edit Dealer',
+	'new_item' => 'New Dealer',
+	'all_items' => 'All Dealers',
+	'view_item' => 'View Dealer',
+	'search_items' => 'Search Dealers',
+	'not_found' =>  'No Dealers found',
+	'not_found_in_trash' => 'No Dealers found in Trash', 
+	'parent_item_colon' => '',
+	'menu_name' => 'Dealers'
+	);
+	
+	$args = array(
+	'labels' => $labels,
+	'public' => false,
+	'publicly_queryable' => true,
+	'show_ui' => true, 
+	'show_in_menu' => true, 
+	'query_var' => true,
+	'rewrite' => array( 'slug' => 'dealer' ),
+	'capability_type' => 'post',
+	'taxonomies' => array( 'continent','country' ),
+	'has_archive' => true, 
+	'hierarchical' => false,
+	'menu_position' => 20,
+	'supports' => array( 'title' )
+	); 
+	
+	register_post_type( 'dealer', $args );
+	
+	$tax_labels = array(
+		'name'              => _x( 'Continents', 'taxonomy general name' ),
+		'singular_name'     => _x( 'Continent', 'taxonomy singular name' ),
+		'search_items'      => __( 'Search Continents' ),
+		'all_items'         => __( 'All Continents' ),
+		'edit_item'         => __( 'Edit Continent' ),
+		'update_item'       => __( 'Update Continent' ),
+		'add_new_item'      => __( 'Add New Continent' ),
+		'new_item_name'     => __( 'New Continent' ),
+		'menu_name'         => __( 'Continents' ),
+	);
+
+	$tax_args = array(
+		'hierarchical'      => true,
+		'labels'            => $tax_labels,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'query_var'         => true,
+		'rewrite'           => array( 'slug' => 'continent' ),
+	);
+
+	register_taxonomy( 'continent', array( 'dealer' ), $tax_args );
+	
+	$tax_labels = array(
+		'name'              => _x( 'Countries', 'taxonomy general name' ),
+		'singular_name'     => _x( 'Country', 'taxonomy singular name' ),
+		'search_items'      => __( 'Search Countries' ),
+		'all_items'         => __( 'All Countries' ),
+		'edit_item'         => __( 'Edit Country' ),
+		'update_item'       => __( 'Update Country' ),
+		'add_new_item'      => __( 'Add New Country' ),
+		'new_item_name'     => __( 'New Country' ),
+		'menu_name'         => __( 'Countries' ),
+	);
+
+	$tax_args = array(
+		'hierarchical'      => true,
+		'labels'            => $tax_labels,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'query_var'         => true,
+		'rewrite'           => array( 'slug' => 'country' ),
+	);
+
+	register_taxonomy( 'country', array( 'dealer' ), $tax_args );
 }
 add_action( 'init', 'codex_custom_init' );
 
