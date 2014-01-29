@@ -31,7 +31,7 @@ if($wpsc_brand_list){
 ?>
 <div id="configurator">
 <h2>Find a Fluid head in 3 easy steps.</h2>
-<form method="get" id="configuratorform" action="<?php echo esc_url( home_url( '/' ) ); ?>product-configurator">
+<form method="post" id="configuratorform" action="<?php echo esc_url( home_url( '/' ) ); ?>product-configurator">
 <div class="span4">
 <span class="step-number">1</span>
 <p>Choose the weight range<br/>(approx. camera weight plus accesssories).</p>

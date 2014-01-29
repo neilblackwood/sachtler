@@ -2344,6 +2344,12 @@ function tech_metaboxes( $meta_boxes ) {
 				'id'      => $prefix . 'web',
 				'type'    => 'text',
 			),
+			array(
+				'name'    => 'Online Store',
+				'desc'    => 'Check if this dealer has an Online Store',
+				'id'      => $prefix . 'shop',
+				'type'    => 'checkbox',
+			),
 		),
 	);
 	
