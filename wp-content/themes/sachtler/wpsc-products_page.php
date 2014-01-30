@@ -160,12 +160,16 @@ $image_width = get_option('product_image_width');
 			$sorted_cats[] = get_term($category_id,'wpsc_product_category');
 		}
 
-        foreach($product_app_output as $term_id => $products_array) {
-            $sorted_apps[] = get_term($term_id,'application');
+        if($product_app_output){
+            foreach($product_app_output as $term_id => $products_array) {
+                $sorted_apps[] = get_term($term_id,'application');
+            }
         }
 
-        foreach($material_app_output as $term_id => $products_array) {
-            $sorted_materials[] = get_term($term_id,'material');
+        if($material_app_output){
+            foreach($material_app_output as $term_id => $products_array) {
+                $sorted_materials[] = get_term($term_id,'material');
+            }
         }
 
 		// Order by database values (set by drag and drop)
