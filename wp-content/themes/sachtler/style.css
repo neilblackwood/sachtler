@@ -870,6 +870,21 @@ PAGE SPECIFIC CSS
 #feature-equipment-col {background-color:#ECEDF1;}
 .feature-equipment {padding:1em;}
 
+
+
+/* HOW TO BUY */
+
+div#dealer-search {}
+div#dealer-search select,
+div#dealer-search input {margin:0;}
+div#dealer-search select {min-width:80%;}
+div#dealer-search input#searchsubmit {float:right;color:white; font-size:1em;margin-top:-0.333em;}
+
+#dealer-index span,
+#dealer-index a,
+#dealer-index p {display:block; font-size:1em;}
+#dealer-index span.dealer_partner {display:inline;padding: 0.333em 0.800em;text-decoration:none!important;text-transform:none!important;border:none;color:white;background-color:#818E97;font-size:0.800em;}
+
 @media only screen and (max-width: 1080px) {
 	#primary-navigation ul.menu a,
 	#secondary-navigation ul.menu a,

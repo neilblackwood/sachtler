@@ -88,6 +88,11 @@ get_header(); ?>
 </form>
 </div>
 </section>
+<?php if ( is_active_sidebar('dealer-newsticker-widgets') ) { ?>
+<section id="dealer-newsticker-container" class="span12">
+<div id="dealer-newsticker" class="bucket-widget-area newsticker"><?php dynamic_sidebar('dealer-newsticker-widgets'); ?></div>
+</section>
+<?php } ?>
 <section id="dealer-index"><!--
 <?php $dealers = new WP_Query($dealer_query);
 while ( $dealers->have_posts() ) : $dealers->the_post();

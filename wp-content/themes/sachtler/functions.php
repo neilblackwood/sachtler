@@ -143,6 +143,13 @@ register_sidebar( array (
 'after_widget' => '',
 ));
 register_sidebar( array (
+'name' => __('How To Buy: News Ticker Widgets', 'blankslate'),
+'id' => 'dealer-newsticker-widgets',
+'description' => 'The News Ticker widget area on the How to buy page.',
+'before_widget' => '',
+'after_widget' => '',
+));
+register_sidebar( array (
 'name' => __('Products: Call to action', 'blankslate'),
 'id' => 'products-c2a-widgets',
 'description' => 'The call to action area on the product pages.',
