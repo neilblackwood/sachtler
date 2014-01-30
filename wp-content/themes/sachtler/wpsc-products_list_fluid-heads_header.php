@@ -11,7 +11,7 @@ $title = ($cat->parent ? get_term($cat->parent,'wpsc_product_category')->name.' 
 					<p><?php echo wpsc_category_description(); ?></p>
 				<?php endif; ?>
                 <div id="product-category-controls">
-                    <ul id="product-category-switch"><!--
+                    <ul id="product-category-switch" class="tabify"><!--
                         --><li class="active"><a href="#head-fixing">by head fixing</a></li><!--
                         --><li><a href="#application">by application</a></li><!--
                     --></ul><!-- #product-tabs-menu -->

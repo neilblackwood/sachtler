@@ -76,7 +76,7 @@ $image_width = get_option('product_image_width');
             
 		<?php endif; ?>
         
-        <?php global $product_output, $sorted_cats; ?>
+        <?php global $product_output, $sorted_cats, $sorted_apps; ?>
 
 		<?php /** start the product loop here */?>
         <?php wpsc_rewind_products()?>
@@ -85,6 +85,9 @@ $image_width = get_option('product_image_width');
         	<?php // Collate the products into an associative array. Like a boss. ?>
         
             <?php $terms = get_the_terms( wpsc_the_product_id(), 'wpsc_product_category' );
+            $app_terms = get_the_terms( wpsc_the_product_id(), 'application' );
+            $material_terms = get_the_terms( wpsc_the_product_id(), 'material' );
+
 			if ( $terms && ! is_wp_error( $terms ) ) :
 				$filename = 'wpsc-products_list';
 				$default_filename = $filename.'_default.php';
@@ -109,17 +112,68 @@ $image_width = get_option('product_image_width');
 						$product_output[$term->term_id][get_post(wpsc_the_product_id())->menu_order] = includeToString($default_filename);
 					}
 				}
-			endif; ?>
+			endif;
+
+            if ( $app_terms && ! is_wp_error( $app_terms ) ) :
+                $filename = 'wpsc-products_list';
+                $default_filename = $filename.'_default.php';
+                $output_complete = false;
+                foreach ( $app_terms as $app_term ) {
+                    if($material_terms){
+                        $app_filename = $filename.'_'.array_values($material_terms)[0]->taxonomy.'.php';
+                    } else {
+                        $app_filename = $filename.'_'.$app_term->taxonomy.'.php';
+                    }
+                    if(file_exists(TEMPLATEPATH.'/'.$app_filename)){
+                        $product_app_output[$app_term->term_id][get_post(wpsc_the_product_id())->menu_order] = includeToString($app_filename);
+                        $output_complete = true;
+                        break;
+                    }
+                    if ($output_complete == false) {
+                        $product_app_output[$app_term->term_id][get_post(wpsc_the_product_id())->menu_order] = includeToString($default_filename);
+                    }
+                }
+            endif; ?>
+
+            <?php
+
+            if ( $material_terms && ! is_wp_error( $material_terms ) ) :
+                $filename = 'wpsc-products_list';
+                $default_filename = $filename.'_default.php';
+                $output_complete = false;
+                foreach ( $material_terms as $material_term ) {
+                    $material_filename = $filename.'_'.$material_term->taxonomy.'.php';
+                    if(file_exists(TEMPLATEPATH.'/'.$material_filename)){
+                        $material_app_output[$material_term->term_id][get_post(wpsc_the_product_id())->menu_order] = includeToString($material_filename);
+                        $output_complete = true;
+                        break;
+                    }
+                    if ($output_complete == false) {
+                        $material_app_output[$material_term->term_id][get_post(wpsc_the_product_id())->menu_order] = includeToString($default_filename);
+                    }
+                }
+            endif; ?>
 
 		<?php endwhile;
 		
 		foreach($product_output as $category_id => $products_array) {
 			$sorted_cats[] = get_term($category_id,'wpsc_product_category');
 		}
-		
+
+        foreach($product_app_output as $term_id => $products_array) {
+            $sorted_apps[] = get_term($term_id,'application');
+        }
+
+        foreach($material_app_output as $term_id => $products_array) {
+            $sorted_materials[] = get_term($term_id,'material');
+        }
+
 		// Order by database values (set by drag and drop)
 		
 		$sorted_cats = wpsc_get_terms_category_sort_filter($sorted_cats);
+        ?>
+        --><div id="head-fixing" class="tab"><!--
+        <?php
 		
 		foreach($sorted_cats as $cat) {
 			
@@ -159,8 +213,88 @@ $image_width = get_option('product_image_width');
 			}
 			
 		}
-		 
-		// ?>
+
+        ?>
+        --></div>
+        <?php if($sorted_apps) { ?>
+        <div id="application" class="tab"><!--
+        <?php
+
+        foreach($sorted_apps as $app) {
+
+            // Output the various template parts
+            $current_application = get_term($app->term_id,'application');
+            $base_filename = 'wpsc-products_list_';
+            $taxonomy = $current_application->taxonomy;
+            if($material_terms){
+                $taxonomy .= '_'.array_values($material_terms)[0]->taxonomy;
+            }
+            $filename = $base_filename.$taxonomy.'_table_header.php';
+            $default_filename = $base_filename.'default_table_header.php';
+
+            if(file_exists(TEMPLATEPATH.'/'.$filename)){
+                include $filename;
+            } elseif(file_exists(TEMPLATEPATH.'/'.$default_filename)){
+                include $default_filename;
+            }
+
+            ksort($product_app_output[$app->term_id]);
+            foreach($product_app_output[$app->term_id] as $product_string){
+                echo $product_string;
+            }
+
+            $filename = $base_filename.$current_application->taxonomy.'_table_footer.php';
+            $default_filename = $base_filename.'default_table_footer.php';
+
+            if(file_exists(TEMPLATEPATH.'/'.$filename)){
+                include $filename;
+            } elseif(file_exists(TEMPLATEPATH.'/'.$default_filename)){
+                include $default_filename;
+            }
+
+        }
+
+        ?>
+        --></div>
+        <?php } /** end application if statement here */ ?>
+        <?php if($sorted_materials) { ?>
+        <div id="material" class="tab"><!--
+        <?php
+
+        foreach($sorted_materials as $material) {
+
+            // Output the various template parts
+            $current_material = get_term($material->term_id,'material');
+            $base_filename = 'wpsc-products_list_';
+            $filename = $base_filename.$current_material->taxonomy.'_table_header.php';
+            $default_filename = $base_filename.'default_table_header.php';
+
+            if(file_exists(TEMPLATEPATH.'/'.$filename)){
+                include $filename;
+            } elseif(file_exists(TEMPLATEPATH.'/'.$default_filename)){
+                include $default_filename;
+            }
+
+            ksort($material_app_output[$material->term_id]);
+            foreach($material_app_output[$material->term_id] as $product_string){
+                echo $product_string;
+            }
+
+            $filename = $base_filename.$current_material->taxonomy.'_table_footer.php';
+            $default_filename = $base_filename.'default_table_footer.php';
+
+            if(file_exists(TEMPLATEPATH.'/'.$filename)){
+                include $filename;
+            } elseif(file_exists(TEMPLATEPATH.'/'.$default_filename)){
+                include $default_filename;
+            }
+
+        }
+
+        ?>
+        --></div>
+        <?php } /** end material if statement here */ ?>
+
 		<?php /** end the product loop here */?>
 
 		<?php if(wpsc_product_count() == 0):?>
@@ -174,7 +308,7 @@ $image_width = get_option('product_image_width');
 			<!--</div><!--close wpsc_page_numbers_bottom-->
 		<?php endif; ?>
 	<?php endif; ?>
-<!--</div><!--close default_products_page_container-->
+</div><!--close default_products_page_container-->
 
 <div class="clear"></div>
 <?php edit_post_link( __( 'Edit', 'blankslate' ), '<div class="edit-link">', '</div>' ) ?>
