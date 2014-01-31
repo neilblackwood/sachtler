@@ -80,6 +80,7 @@ $image_width = get_option('product_image_width');
 
 		<?php /** start the product loop here */?>
         <?php wpsc_rewind_products()?>
+        <?php $i=100000; ?>
 		<?php while (wpsc_have_products()) :  wpsc_the_product(); ?>
         
         	<?php // Collate the products into an associative array. Like a boss. ?>
@@ -87,6 +88,7 @@ $image_width = get_option('product_image_width');
             <?php $terms = get_the_terms( wpsc_the_product_id(), 'wpsc_product_category' );
             $app_terms = get_the_terms( wpsc_the_product_id(), 'application' );
             $material_terms = get_the_terms( wpsc_the_product_id(), 'material' );
+			$menu_order = (get_post(wpsc_the_product_id())->menu_order ? get_post(wpsc_the_product_id())->menu_order : $i++);
 
 			if ( $terms && ! is_wp_error( $terms ) ) :
 				$filename = 'wpsc-products_list';
@@ -95,7 +97,7 @@ $image_width = get_option('product_image_width');
 				foreach ( $terms as $term ) {
 					$cat_filename = $filename.'_'.$term->slug.'.php';
 					if(file_exists(TEMPLATEPATH.'/'.$cat_filename)){
-						$product_output[$term->term_id][get_post(wpsc_the_product_id())->menu_order] = includeToString($cat_filename);
+						$product_output[$term->term_id][$menu_order] = includeToString($cat_filename);
 						$output_complete = true;
 						break;
 					}
@@ -103,13 +105,13 @@ $image_width = get_option('product_image_width');
 					if($cat_parent_name && ! is_wp_error( $cat_parent_name ) ) {
 						$cat_parent_filename = $filename.'_'.$cat_parent_name->slug.'.php';
 						if(file_exists(TEMPLATEPATH.'/'.$cat_parent_filename)){
-							$product_output[$term->term_id][get_post(wpsc_the_product_id())->menu_order] = includeToString($cat_parent_filename);
+							$product_output[$term->term_id][$menu_order] = includeToString($cat_parent_filename);
 							$output_complete = true;
 							break;
 						}
 					}
 					if ($output_complete == false) {
-						$product_output[$term->term_id][get_post(wpsc_the_product_id())->menu_order] = includeToString($default_filename);
+						$product_output[$term->term_id][$menu_order] = includeToString($default_filename);
 					}
 				}
 			endif;
@@ -125,12 +127,12 @@ $image_width = get_option('product_image_width');
                         $app_filename = $filename.'_'.$app_term->taxonomy.'.php';
                     }
                     if(file_exists(TEMPLATEPATH.'/'.$app_filename)){
-                        $product_app_output[$app_term->term_id][get_post(wpsc_the_product_id())->menu_order] = includeToString($app_filename);
+                        $product_app_output[$app_term->term_id][$menu_order] = includeToString($app_filename);
                         $output_complete = true;
                         break;
                     }
                     if ($output_complete == false) {
-                        $product_app_output[$app_term->term_id][get_post(wpsc_the_product_id())->menu_order] = includeToString($default_filename);
+                        $product_app_output[$app_term->term_id][$menu_order] = includeToString($default_filename);
                     }
                 }
             endif; ?>
@@ -144,12 +146,12 @@ $image_width = get_option('product_image_width');
                 foreach ( $material_terms as $material_term ) {
                     $material_filename = $filename.'_'.$material_term->taxonomy.'.php';
                     if(file_exists(TEMPLATEPATH.'/'.$material_filename)){
-                        $material_app_output[$material_term->term_id][get_post(wpsc_the_product_id())->menu_order] = includeToString($material_filename);
+                        $material_app_output[$material_term->term_id][$menu_order] = includeToString($material_filename);
                         $output_complete = true;
                         break;
                     }
                     if ($output_complete == false) {
-                        $material_app_output[$material_term->term_id][get_post(wpsc_the_product_id())->menu_order] = includeToString($default_filename);
+                        $material_app_output[$material_term->term_id][$menu_order] = includeToString($default_filename);
                     }
                 }
             endif; ?>
