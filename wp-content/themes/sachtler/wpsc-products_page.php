@@ -122,7 +122,7 @@ $image_width = get_option('product_image_width');
                 $output_complete = false;
                 foreach ( $app_terms as $app_term ) {
                     if($material_terms){
-                        $app_filename = $filename.'_'.array_values($material_terms)[0]->taxonomy.'.php';
+                        $app_filename = $filename.'_'.reset($material_terms)->taxonomy.'.php';
                     } else {
                         $app_filename = $filename.'_'.$app_term->taxonomy.'.php';
                     }
@@ -233,7 +233,7 @@ $image_width = get_option('product_image_width');
             $base_filename = 'wpsc-products_list_';
             $taxonomy = $current_application->taxonomy;
             if($material_terms){
-                $taxonomy .= '_'.array_values($material_terms)[0]->taxonomy;
+                $taxonomy .= '_'.reset($material_terms)->taxonomy;
             }
             $filename = $base_filename.$taxonomy.'_table_header.php';
             $default_filename = $base_filename.'default_table_header.php';
