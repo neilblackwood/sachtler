@@ -12,19 +12,19 @@ printf($current_application_title,$current_application->name,$current_applicatio
         	<p>Payload range</p>
         </div><!--
         --><div class="center span2">
-        	<img src="<?php echo get_bloginfo('template_directory'); ?>/images/ico/material.png"/>
-        	<p>Material</p>
-        </div><!--
-        --><div class="center span2">
         	<img src="<?php echo get_bloginfo('template_directory'); ?>/images/ico/height.png"/>
         	<p>Height range</p>
         </div><!--
         --><div class="center span2">
-        	<img src="<?php echo get_bloginfo('template_directory'); ?>/images/ico/head.png"/>
-        	<p>Head fitting</p>
+        	<img src="<?php echo get_bloginfo('template_directory'); ?>/images/ico/on_shot_stroke.png"/>
+        	<p>On-shot stroke</p>
+        </div><!--
+        --><div class="center span2">
+        	<img src="<?php echo get_bloginfo('template_directory'); ?>/images/ico/clearance.png"/>
+        	<p>Clearance</p>
         </div><!--
         --><div class="center span1">
-        	<p>Compare up to 4 tripods</p>
-        	<a href="/sachtler/product-comparison/?ct=tripods" class="red-button button compare">Show</a>
+        	<p>Compare up to 4 pedestals</p>
+        	<a href="/sachtler/product-comparison/?ct=pedestals" class="red-button button compare">Show</a>
         </div><!--
     --></div>

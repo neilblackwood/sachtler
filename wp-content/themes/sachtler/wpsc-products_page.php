@@ -76,7 +76,7 @@ $image_width = get_option('product_image_width');
             
 		<?php endif; ?>
         
-        <?php global $product_output, $sorted_cats, $sorted_apps; ?>
+        <?php global $product_output, $sorted_cats, $sorted_apps; $cat_parent_slug;  ?>
 
 		<?php /** start the product loop here */?>
         <?php wpsc_rewind_products()?>
@@ -94,6 +94,7 @@ $image_width = get_option('product_image_width');
 				$output_complete = false;
 				foreach ( $terms as $term ) {
 					$cat_filename = $filename.'_'.$term->slug.'.php';
+
 					if(file_exists(TEMPLATEPATH.'/'.$cat_filename)){
 						$product_output[$term->term_id][get_post(wpsc_the_product_id())->menu_order] = includeToString($cat_filename);
 						$output_complete = true;
@@ -101,6 +102,7 @@ $image_width = get_option('product_image_width');
 					}
 					$cat_parent_name = get_term($term->parent,'wpsc_product_category');
 					if($cat_parent_name && ! is_wp_error( $cat_parent_name ) ) {
+					    $cat_parent_slug = $cat_parent_name->slug;
 						$cat_parent_filename = $filename.'_'.$cat_parent_name->slug.'.php';
 						if(file_exists(TEMPLATEPATH.'/'.$cat_parent_filename)){
 							$product_output[$term->term_id][get_post(wpsc_the_product_id())->menu_order] = includeToString($cat_parent_filename);
@@ -119,8 +121,8 @@ $image_width = get_option('product_image_width');
                 $default_filename = $filename.'_default.php';
                 $output_complete = false;
                 foreach ( $app_terms as $app_term ) {
-                    if($material_terms){
-                        $app_filename = $filename.'_'.array_values($material_terms)[0]->taxonomy.'.php';
+                    if($cat_parent_slug){
+                        $app_filename = $filename.'_'.$cat_parent_slug.'_'.$app_term->taxonomy.'.php';
                     } else {
                         $app_filename = $filename.'_'.$app_term->taxonomy.'.php';
                     }
@@ -185,6 +187,7 @@ $image_width = get_option('product_image_width');
 			
 			$current_category = get_term($cat->term_id,'wpsc_product_category');
 			$parent_category = get_term($current_category->parent,'wpsc_product_category');
+			$cat_parent_slug = $parent_category->slug;
 		
 			$base_filename = 'wpsc-products_list_';
 			$filename = $base_filename.$current_category->slug.'_table_header.php';
@@ -230,10 +233,12 @@ $image_width = get_option('product_image_width');
             $current_application = get_term($app->term_id,'application');
             $base_filename = 'wpsc-products_list_';
             $taxonomy = $current_application->taxonomy;
-            if($material_terms){
-                $taxonomy .= '_'.array_values($material_terms)[0]->taxonomy;
+
+            if($cat_parent_slug){
+                $filename = $base_filename.$cat_parent_slug.'_'.$taxonomy.'_table_header.php';
+            } else {
+                $filename = $base_filename.$taxonomy.'_table_header.php';
             }
-            $filename = $base_filename.$taxonomy.'_table_header.php';
             $default_filename = $base_filename.'default_table_header.php';
 
             if(file_exists(TEMPLATEPATH.'/'.$filename)){
