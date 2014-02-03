@@ -3103,13 +3103,18 @@ function get_equipment_list() {
 
         foreach($related_products as $product) {
             $associatedCats = get_the_product_category($product->ID);
-            if($associatedCats['0']->cat_ID!=$category){
+            if($associatedCats['0']->parent!=$category){
                 if($category!=0){
                     $output .= "</p>\n";
                 }
-                $output .= "<p><strong>".$associatedCats['0']->cat_name."</strong><br>\n";
-                // set the category value to prevent duplicate category names being displayed.
-                $category = $associatedCats['0']->cat_ID;
+                if($associatedCats['0']->parent!=0){
+                    $parent_cat = get_term($associatedCats['0']->parent,'wpsc_product_category');
+                } else {
+                    $parent_cat = $associatedCats['0'];
+                }
+                $output .= "<p><strong>".$parent_cat->name."</strong><br>\n";
+                // set the parent category value to prevent duplicate category names being displayed.
+                $category = $associatedCats['0']->parent;
             }
             $output .= "";
 

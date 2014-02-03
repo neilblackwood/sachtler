@@ -123,8 +123,6 @@ $image_width = get_option('product_image_width');
                 foreach ( $app_terms as $app_term ) {
                     if($cat_parent_slug){
                         $app_filename = $filename.'_'.$cat_parent_slug.'_'.$app_term->taxonomy.'.php';
-                    } else {
-                        $app_filename = $filename.'_'.$app_term->taxonomy.'.php';
                     }
                     if(file_exists(TEMPLATEPATH.'/'.$app_filename)){
                         $product_app_output[$app_term->term_id][get_post(wpsc_the_product_id())->menu_order] = includeToString($app_filename);
@@ -236,8 +234,6 @@ $image_width = get_option('product_image_width');
 
             if($cat_parent_slug){
                 $filename = $base_filename.$cat_parent_slug.'_'.$taxonomy.'_table_header.php';
-            } else {
-                $filename = $base_filename.$taxonomy.'_table_header.php';
             }
             $default_filename = $base_filename.'default_table_header.php';
 
