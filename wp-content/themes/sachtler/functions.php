@@ -3156,3 +3156,22 @@ function add_query_vars_filter( $vars ){
   return $vars;
 }
 add_filter( 'query_vars', 'add_query_vars_filter' );
+
+// Run functions in sites' native language
+
+function run_native($func,$args)
+{
+	global $sitepress;
+	
+	if(!$sitepress) return call_user_func_array($func,$args);
+	
+	$current_lang = $sitepress->get_current_language();
+	$default_lang = $sitepress->get_default_language();
+	$sitepress->switch_lang($default_lang);
+	
+	$result = call_user_func_array($func,$args);
+	
+	$sitepress->switch_lang($current_lang);
+	
+	return ($result ? $result : false);
+}
