@@ -106,6 +106,7 @@ $image_width = get_option('product_image_width');
 					$cat_parent_name = get_term($term->parent,'wpsc_product_category');
 					if($cat_parent_name && ! is_wp_error( $cat_parent_name ) ) {
 						$native_term = run_native('get_term',array($cat_parent_name->term_id,'wpsc_product_category'));
+						$cat_parent_slug = $native_term->slug;
 						$cat_parent_filename = $filename.'_'.$native_term->slug.'.php';
 						if(file_exists(TEMPLATEPATH.'/'.$cat_parent_filename)){
 							$product_output[$term->term_id][$menu_order] = includeToString($cat_parent_filename);
