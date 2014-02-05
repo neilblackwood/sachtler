@@ -2458,6 +2458,10 @@ function taxonomy_show_on_filter( $display, $meta_box ) {
 				while($term->parent != 0) {
 					$term = get_term($term->parent,$taxonomy);
 				}
+				if(function_exists('icl_object_id')) {
+					global $sitepress;
+					$term = get_term(icl_object_id($term->term_id,$taxonomy,false,$sitepress->get_default_language()),$taxonomy);
+				}
 				if( in_array( $term->slug, $slugs ) )
 					$display = true;
 			}
@@ -2624,9 +2628,10 @@ function get_product_specs($id,$single,$short = false) {
 	// Get the product category hierachical list
 	$terms = wp_get_object_terms( $id, $taxonomy );
 	foreach( $terms as $term ) {
+		$term = run_native('get_term',array($term->term_id,$taxonomy));
 		$cat_hierachy[] = $term->slug;
 		while($term->parent != 0) {
-			$term = get_term($term->parent,$taxonomy);
+			$term = run_native('get_term',array($term->parent,$taxonomy));
 			$cat_hierachy[] = $term->slug;
 		}
 	}
@@ -3167,11 +3172,11 @@ function run_native($func,$args)
 	
 	$current_lang = $sitepress->get_current_language();
 	$default_lang = $sitepress->get_default_language();
-	$sitepress->switch_lang($default_lang);
+	$sitepress->switch_lang($default_lang,true);
 	
 	$result = call_user_func_array($func,$args);
 	
-	$sitepress->switch_lang($current_lang);
+	$sitepress->switch_lang($current_lang,true);
 	
 	return ($result ? $result : false);
 }

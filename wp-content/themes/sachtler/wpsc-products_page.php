@@ -55,8 +55,8 @@ $image_width = get_option('product_image_width');
         	<?php // Output the correct category header file ?>
 			
             <?php
-			$term = get_term_by('slug',get_query_var( 'wpsc_product_category' ),'wpsc_product_category');
-			$parent_term = get_term($term->parent,'wpsc_product_category');
+			$term = run_native('get_term_by',array('slug',get_query_var( 'wpsc_product_category' ),'wpsc_product_category'));
+			$parent_term = run_native('get_term',array($term->parent,'wpsc_product_category'));
 			
 			$cat_header_filename = sprintf('wpsc-products_list_%1$s_header.php',$term->slug);
 			$cat_parent_header_filename = sprintf('wpsc-products_list_%1$s_header.php',$parent_term->slug);
@@ -189,11 +189,13 @@ $image_width = get_option('product_image_width');
 			
 			$current_category = get_term($cat->term_id,'wpsc_product_category');
 			$parent_category = get_term($current_category->parent,'wpsc_product_category');
-			$cat_parent_slug = $parent_category->slug;
+			$cat_native = run_native('get_term',array($cat->term_id,'wpsc_product_category'));
+			$cat_parent_native = run_native('get_term',array($cat_native->parent,'wpsc_product_category'));
+			$cat_parent_slug = $cat_parent_native->slug;
 		
 			$base_filename = 'wpsc-products_list_';
-			$filename = $base_filename.$current_category->slug.'_table_header.php';
-			$parent_filename = $base_filename.$parent_category->slug.'_table_header.php';
+			$filename = $base_filename.$cat_native->slug.'_table_header.php';
+			$parent_filename = $base_filename.$cat_parent_native->slug.'_table_header.php';
 			$default_filename = $base_filename.'default_table_header.php';
 			
 			if(file_exists(TEMPLATEPATH.'/'.$filename)){
@@ -209,8 +211,8 @@ $image_width = get_option('product_image_width');
 				echo $product_string;
 			}
 			
-			$filename = $base_filename.$current_category->slug.'_table_footer.php';
-			$parent_filename = $base_filename.$parent_category->slug.'_table_footer.php';
+			$filename = $base_filename.$cat_native->slug.'_table_footer.php';
+			$parent_filename = $base_filename.$cat_parent_native->slug.'_table_footer.php';
 			$default_filename = $base_filename.'default_table_footer.php';
 			
 			if(file_exists(TEMPLATEPATH.'/'.$filename)){
