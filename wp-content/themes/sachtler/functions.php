@@ -3180,3 +3180,75 @@ function run_native($func,$args)
 	
 	return ($result ? $result : false);
 }
+
+
+// Add Duplicate functionality to everything
+
+add_filter( 'page_row_actions','sachtler_action_row', 10, 2 );
+add_filter( 'post_row_actions','sachtler_action_row', 10, 2 );
+
+function sachtler_action_row( $actions, $post ) {
+
+	if ( $post->post_type == "wpsc-product" )
+			return $actions;
+
+	$url = admin_url( 'edit.php' );
+	$url = add_query_arg( array( 'sachtler_admin_action' => 'duplicate', 'post' => $post->ID ), $url );
+
+    $actions['duplicate'] = '<a href="'.esc_url( $url ).'">' . 'Duplicate' . '</a>';
+	return $actions;
+}
+
+function sachtler_duplicate() {
+	
+	// Get access to the database
+	global $wpdb;
+	
+	// Get variables
+	$original_id  = $_GET['post'];
+	
+	// Get the post as an array
+	$duplicate = get_post( $original_id, 'ARRAY_A' );
+	
+	// Modify some of the elements
+	$duplicate['post_title'] = $duplicate['post_title'].' Copy';
+	
+	// Set the status
+	$duplicate['post_status'] = 'draft';
+	
+	// Set the post date
+	$timestamp = current_time('timestamp',0);
+	$duplicate['post_date'] = date('Y-m-d H:i:s', $timestamp);
+
+	// Remove some of the keys
+	unset( $duplicate['ID'] );
+	unset( $duplicate['guid'] );
+	unset( $duplicate['comment_count'] );
+
+	// Insert the post into the database
+	$duplicate_id = wp_insert_post( $duplicate );
+	
+	// Duplicate all the taxonomies/terms
+	$taxonomies = get_object_taxonomies( $duplicate['post_type'] );
+	foreach( $taxonomies as $taxonomy ) {
+		$terms = wp_get_post_terms( $original_id, $taxonomy, array('fields' => 'names') );
+		wp_set_object_terms( $duplicate_id, $terms, $taxonomy );
+	}
+
+	// Duplicate all the custom fields
+	$custom_fields = get_post_custom( $original_id );
+	foreach ( $custom_fields as $key => $value ) {
+		add_post_meta( $duplicate_id, $key, maybe_unserialize($value[0]) );
+	}
+	
+	//$sendback = wp_get_referer();
+	//$sendback = add_query_arg( 'duplicated', (int)$duplicated, $sendback );
+	$sendback = admin_url( 'post.php' );
+	$sendback = add_query_arg( array( 'post' => $duplicate_id, 'action' => 'edit' ), $sendback );
+	wp_redirect( $sendback );
+	exit();
+
+}
+
+if ( isset( $_GET['sachtler_admin_action'] ) && ( $_GET['sachtler_admin_action'] == 'duplicate' ) )
+    add_action( 'admin_init', 'sachtler_duplicate' );
