@@ -15,7 +15,7 @@
                     
                     <?php // CALL TO ACTIONS ?>
                     
-                    --><div id="product_c2a_col" class="span3 valign_bottom">
+                    --><div class="product_c2a_col span3 valign_bottom">
                     
                     	<?php if(wpsc_product_sku( wpsc_the_product_id() )) printf('<span class="%1$s">%2$s</span><span class="%3$s">%4$s</span>', 'product-sku-label','Order code','product-sku',wpsc_product_sku( wpsc_the_product_id() )); ?>
                         

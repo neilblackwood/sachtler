@@ -186,7 +186,7 @@ $(document).ready(function(){
 		if(file_upload_elements.length > 0) {
 			return true;
 		} else {
-			$('.wpsc_buy_button_container .red-button').addClass('green-button').removeClass('red-button').attr('Value','...added');
+			$(this).find('.wpsc_buy_button_container .red-button').addClass('green-button').removeClass('red-button').attr('Value','...added');
 			return false;
 		}
 	});
