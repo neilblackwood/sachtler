@@ -173,10 +173,10 @@ $(document).ready(function(){
 	
 	$('.tabify').tabify();
 	
-	$('span.material').hover(function(){
-		$('div.material-desc').fadeIn();
+	$('p.material').hover(function(){
+		$(this).parent().find('div.material-desc').fadeIn();
 	}, function() {
-		$('div.material-desc').fadeOut();
+		$(this).parent().find('div.material-desc').fadeOut();
 	});
 	
 	// Submit the product form using AJAX

@@ -2208,6 +2208,208 @@ function tech_metaboxes( $meta_boxes ) {
 		),
 	);
 	
+	$prefix = '_accessories_tech_'; // Prefix for all fields
+	
+	$meta_boxes[] = array(
+		'id' => 'accessories_tech_metabox',
+		'title' => 'Tech Specs',
+		'pages' => array('wpsc-product'), // post type
+		'show_on' => array( 'key' => 'taxonomy', 'value' => array('wpsc_product_category' => 'accessories') ),
+		'context' => 'normal',
+		'priority' => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name'    => 'Weight metric units',
+				'desc'    => 'Select the metric weight units',
+				'id'      => $prefix . 'weight_unit',
+				'type'    => 'radio',
+				'options' => array(
+					array( 'name' => 'Kilograms', 'value' => 'kg', ),
+					array( 'name' => 'Grams', 'value' => 'g', ),
+				),
+			),
+			array(
+				'name'    => 'Dimensions metric units',
+				'desc'    => 'Select the metric dimension units',
+				'id'      => $prefix . 'dimensions_unit',
+				'type'    => 'radio',
+				'options' => array(
+					array( 'name' => 'Millimeters', 'value' => 'mm', ),
+					array( 'name' => 'Centimeters', 'value' => 'cm', ),
+				),
+			),
+			array(
+				'name'    => 'Weight',
+				'desc'    => 'Enter the weight in metric unit',
+				'id'      => $prefix . 'weight',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Weight (lbs)',
+				'desc'    => 'Enter the weight in lbs',
+				'id'      => $prefix . 'weight_imp',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Payload Min (kg)',
+				'desc'    => 'Enter the payload minimum in kg',
+				'id'      => $prefix . 'payload_min',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Payload Max (kg)',
+				'desc'    => 'Enter the payload maximum in kg',
+				'id'      => $prefix . 'payload_max',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Payload Min (lbs)',
+				'desc'    => 'Enter the payload minimum in lbs',
+				'id'      => $prefix . 'payload_min_imp',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Payload Max (lbs)',
+				'desc'    => 'Enter the payload maximum in lbs',
+				'id'      => $prefix . 'payload_max_imp',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Diameter One',
+				'desc'    => 'Enter the primary diameter in metric unit',
+				'id'      => $prefix . 'diameter',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Diameter One (in)',
+				'desc'    => 'Enter the primary diameter in inches',
+				'id'      => $prefix . 'diameter_imp',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Diameter Two',
+				'desc'    => 'Enter the secondary diameter in metric unit',
+				'id'      => $prefix . 'diameter2',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Diameter Two (in)',
+				'desc'    => 'Enter the secondary diameter in inches',
+				'id'      => $prefix . 'diameter2_imp',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Width',
+				'desc'    => 'Enter the width in metric units',
+				'id'      => $prefix . 'width',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Width (in)',
+				'desc'    => 'Enter the width in inches',
+				'id'      => $prefix . 'width_imp',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Height',
+				'desc'    => 'Enter the height in metric units',
+				'id'      => $prefix . 'height',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Height (in)',
+				'desc'    => 'Enter the height in inches',
+				'id'      => $prefix . 'height_imp',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Length',
+				'desc'    => 'Enter the length in metric units',
+				'id'      => $prefix . 'length',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Length (in)',
+				'desc'    => 'Enter the length in inches',
+				'id'      => $prefix . 'length_imp',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Length Max',
+				'desc'    => 'Enter the maximum length in metric units (optional)',
+				'id'      => $prefix . 'length_max',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Length Max (in)',
+				'desc'    => 'Enter the maximum length in inches (optional)',
+				'id'      => $prefix . 'length_max_imp',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Build Radius Min (cm)',
+				'desc'    => 'Enter the minimum build radius in cm',
+				'id'      => $prefix . 'build_rad_min',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Build Radius Min (in)',
+				'desc'    => 'Enter the minimum build radius in inches',
+				'id'      => $prefix . 'build_rad_min_imp',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Build Radius Max (cm)',
+				'desc'    => 'Enter the maximum build radius in cm',
+				'id'      => $prefix . 'build_rad_max',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Build Radius Max (in)',
+				'desc'    => 'Enter the maximum build radius in inches',
+				'id'      => $prefix . 'build_rad_max_imp',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Pan Bar Front',
+				'desc'    => 'Enter the pan bar front dimension in metric units',
+				'id'      => $prefix . 'pan_bar_front',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Pan Bar Front (in)',
+				'desc'    => 'Enter the pan bar front dimension in inches',
+				'id'      => $prefix . 'pan_bar_front_imp',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Pan Bar Back',
+				'desc'    => 'Enter the pan bar back dimension in metric units',
+				'id'      => $prefix . 'pan_bar_back',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Pan Bar Back (in)',
+				'desc'    => 'Enter the pan bar back dimension in inches',
+				'id'      => $prefix . 'pan_bar_back_imp',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Pan Bar Handle',
+				'desc'    => 'Enter the pan bar handle dimension in metric units',
+				'id'      => $prefix . 'pan_bar_handle',
+				'type'    => 'text',
+			),
+			array(
+				'name'    => 'Pan Bar Handle (in)',
+				'desc'    => 'Enter the pan bar handle dimension in inches',
+				'id'      => $prefix . 'pan_bar_handle_imp',
+				'type'    => 'text',
+			),
+		),
+	);
+	
 	$prefix = '_feature_'; // Prefix for all fields
 	
 	$meta_boxes[] = array(
@@ -2618,7 +2820,7 @@ function get_images_for_product($id,$lightbox=false){
 function get_product_specs($id,$single,$short = false) {
 	
 	// Set the ID if it is not specified and set other variables
-	if(!$id) $id = get_the_id();
+	$id = ($id ? $id : get_the_id());
 	$taxonomy = 'wpsc_product_category';
 	$cat_hierachy = array();
 	$output = array();
@@ -2696,49 +2898,49 @@ function get_product_specs($id,$single,$short = false) {
 		
 		// Build strings
 		
-		if ($weight !== '' && $weight_imp !== '') {
+		if ($weight && $weight_imp) {
 			$output['weight'] = sprintf($str_weight,$weight,$weight_imp);
 		}
 		
-		if ($payload_min !== '' && $payload_max !== '' && $payload_min_imp !== '' && $payload_max_imp !== '') {
+		if ($payload_min && $payload_max && $payload_min_imp && $payload_max_imp) {
 			$output['payload'] = sprintf($str_payload_range,$payload_min,$payload_min_imp,$payload_max,$payload_max_imp);
-		} elseif ($payload_min !== '' && $payload_min_imp !== '' || $payload_max !== '' && $payload_max_imp !== '' ) {
+		} elseif ($payload_min && $payload_min_imp || $payload_max && $payload_max_imp ) {
 			$output['payload'] = sprintf($str_payload_single,$payload_min,$payload_min_imp,$payload_max,$payload_max_imp);
 		}
 		
-		if ($counterbalance_steps !== '') $output['counterbalance_steps'] = sprintf($str_counterbalance_steps,$counterbalance_steps);
+		if ($counterbalance_steps) $output['counterbalance_steps'] = sprintf($str_counterbalance_steps,$counterbalance_steps);
 		
-		if ($hor_drag_grades !== '' && $ver_drag_grades !== '') {
+		if ($hor_drag_grades && $ver_drag_grades) {
 			if ($hor_drag_grades == $ver_drag_grades) {
 				$output['drag_grades'] = sprintf($str_drag_grades_same,$hor_drag_grades);
 			} else {
 				$output['drag_grades'] = sprintf($str_drag_grades_dif,$hor_drag_grades,$ver_drag_grades);
 			}
-		} elseif ($hor_drag_grades !== '') {
+		} elseif ($hor_drag_grades) {
 			$output['drag_grades'] = sprintf($str_drag_grades_hor,$hor_drag_grades);
-		} elseif ($ver_drag_grades !== '') {
+		} elseif ($ver_drag_grades) {
 			$output['drag_grades'] = sprintf($str_drag_grades_ver,$ver_drag_grades);
-		} elseif ($diag_drag_grades !== '') {
+		} elseif ($diag_drag_grades) {
 			$output['drag_grades'] = sprintf($str_drag_grades_diag,$diag_drag_grades);
 		}
 		
-		if ($tilt_range_max !== '' && $tilt_range_min !== '') {
+		if ($tilt_range_max && $tilt_range_min) {
 			$output['tilt_range'] = sprintf($str_tilt_range,$tilt_range_max,$tilt_range_min);
 		}
 		
-		if ($slide_range !== '' && $slide_range_imp !== '') {
+		if ($slide_range && $slide_range_imp) {
 			$output['slide_range'] = sprintf($str_slide_range,$slide_range,$slide_range_imp);
 		}
 		
-		if ($temp_min !== '' && $temp_max !== '' && $temp_min_imp !== '' && $temp_max_imp !== '') {
+		if ($temp_min && $temp_max && $temp_min_imp && $temp_max_imp) {
 			$output['temp'] = sprintf($str_temp,$temp_min,$temp_min_imp,$temp_max,$temp_max_imp);
-		} elseif ($temp_min !== '' && $temp_min_imp !== '' || $temp_max !== '' && $temp_max_imp !== '' ) {
+		} elseif ($temp_min && $temp_min_imp || $temp_max && $temp_max_imp ) {
 			$output['temp'] = sprintf($str_temp_single,$temp_min,$temp_min_imp,$temp_max,$temp_max_imp);
 		}
 		
-		if ($camera_fitting !== '') $output['camera_fitting'] = sprintf($str_camera_fitting,implode(', ',$camera_fitting));
+		if ($camera_fitting) $output['camera_fitting'] = sprintf($str_camera_fitting,implode(', ',$camera_fitting));
 		
-		if ($head_fitting !== '') $output['head_fitting'] = sprintf($str_head_fitting,implode(', ',$head_fitting));
+		if ($head_fitting) $output['head_fitting'] = sprintf($str_head_fitting,implode(', ',$head_fitting));
 		
 		if ($flat_base) $output['flat_base'] = $str_flat_base;
 		
@@ -2746,11 +2948,11 @@ function get_product_specs($id,$single,$short = false) {
 		
 		if ($mitchell_adapter) $output['mitchell_adapter'] = $str_mitchell_adapter;
 		
-		if ($pan_bar !== '') $output['pan_bar'] = sprintf($str_pan_bar,$pan_bar);
+		if ($pan_bar) $output['pan_bar'] = sprintf($str_pan_bar,$pan_bar);
 		
-		if ($level !== '') $output['level'] = sprintf($str_level,$level);
+		if ($level) $output['level'] = sprintf($str_level,$level);
 		
-		if ($viewfinder !== '') $output['viewfinder'] = sprintf($str_viewfinder,$viewfinder);
+		if ($viewfinder) $output['viewfinder'] = sprintf($str_viewfinder,$viewfinder);
 		
 	} elseif (in_array($output['cat']='tripods',$cat_hierachy)) {
 		
@@ -2791,21 +2993,21 @@ function get_product_specs($id,$single,$short = false) {
 		
 		// Build strings
 		
-		if ($weight !== '' && $weight_imp !== '') {
+		if ($weight && $weight_imp) {
 			$output['weight'] = sprintf($str_weight,$weight,$weight_imp);
 		}
 		
-		if ($payload_min !== '' && $payload_max !== '' && $payload_min_imp !== '' && $payload_max_imp !== '') {
+		if ($payload_min && $payload_max && $payload_min_imp && $payload_max_imp) {
 			$output['payload'] = sprintf($str_payload_range,$payload_min,$payload_min_imp,$payload_max,$payload_max_imp);
-		} elseif ($payload_min !== '' && $payload_min_imp !== '' || $payload_max !== '' && $payload_max_imp !== '' ) {
+		} elseif ($payload_min && $payload_min_imp || $payload_max && $payload_max_imp ) {
 			$output['payload'] = sprintf($str_payload_single,$payload_min,$payload_min_imp,$payload_max,$payload_max_imp);
 		}
 		
 		if (!empty($material)) $output['material'] = sprintf($str_material,end($material)->name,end($material)->description);
 		
-		if ($height_min !== '' && $height_max !== '' && $height_min_imp !== '' && $height_max_imp !== '') {
+		if ($height_min && $height_max && $height_min_imp && $height_max_imp) {
 			$output['height'] = sprintf($str_height_range,$height_min,$height_min_imp,$height_max,$height_max_imp);
-		} elseif ($height_min !== '' && $height_min_imp !== '' || $height_max !== '' && $height_max_imp !== '' ) {
+		} elseif ($height_min && $height_min_imp || $height_max && $height_max_imp ) {
 			$output['height'] = sprintf($str_height_single,$height_min,$height_min_imp,$height_max,$height_max_imp);
 		}
 		
@@ -2813,7 +3015,7 @@ function get_product_specs($id,$single,$short = false) {
 		
 		if (!empty($camera_fitting)) $output['camera_fitting'] = sprintf($str_camera_fitting,implode(', ',$camera_fitting));
 		
-		if ($transport_length !== '' && $transport_length_imp !== '') {
+		if ($transport_length && $transport_length_imp) {
 			$output['transport_length'] = sprintf($str_transport_length,$transport_length,$transport_length_imp);
 		}
 		
@@ -2857,19 +3059,19 @@ function get_product_specs($id,$single,$short = false) {
 		
 		// Build strings
 		
-		if ($weight !== '' && $weight_imp !== '') {
+		if ($weight && $weight_imp) {
 			$output['weight'] = sprintf($str_weight,$weight,$weight_imp);
 		}
 		
-		if ($payload_min !== '' && $payload_max !== '' && $payload_min_imp !== '' && $payload_max_imp !== '') {
+		if ($payload_min && $payload_max && $payload_min_imp && $payload_max_imp) {
 			$output['payload'] = sprintf($str_payload_range,$payload_min,$payload_min_imp,$payload_max,$payload_max_imp);
-		} elseif ($payload_min !== '' && $payload_min_imp !== '' || $payload_max !== '' && $payload_max_imp !== '' ) {
+		} elseif ($payload_min && $payload_min_imp || $payload_max && $payload_max_imp ) {
 			$output['payload'] = sprintf($str_payload_single,$payload_min,$payload_min_imp,$payload_max,$payload_max_imp);
 		}
 		
-		if ($height_min !== '' && $height_max !== '' && $height_min_imp !== '' && $height_max_imp !== '') {
+		if ($height_min && $height_max && $height_min_imp && $height_max_imp) {
 			$output['height'] = sprintf($str_height_range,$height_min,$height_min_imp,$height_max,$height_max_imp);
-		} elseif ($height_min !== '' && $height_min_imp !== '' || $height_max !== '' && $height_max_imp !== '' ) {
+		} elseif ($height_min && $height_min_imp || $height_max && $height_max_imp ) {
 			$output['height'] = sprintf($str_height_single,$height_min,$height_min_imp,$height_max,$height_max_imp);
 		}
 		
@@ -2877,11 +3079,11 @@ function get_product_specs($id,$single,$short = false) {
 		
 		if ($quick_fix && !empty($head_fitting)) $output['head_fitting'] .= $str_quick_fix;
 		
-		if ($on_shot_stroke !== '' && $on_shot_stroke_imp !== '') {
+		if ($on_shot_stroke && $on_shot_stroke_imp) {
 			$output['on_shot_stroke'] = sprintf($str_on_shot_stroke,$on_shot_stroke,$on_shot_stroke_imp);
 		}
 		
-		if ($clearance !== '' && $clearance_imp !== '') {
+		if ($clearance && $clearance_imp) {
 			$output['clearance'] = sprintf($str_clearance,$clearance,$clearance_imp);
 		}
 		
@@ -2937,26 +3139,123 @@ function get_product_specs($id,$single,$short = false) {
 			$output['spreader'] = sprintf($str_spreader,$spreader);
 		}
 		
-		if ($weight !== '' && $weight_imp !== '') {
+		if ($weight && $weight_imp) {
 			$output['weight'] = sprintf($str_weight,$weight,$weight_imp);
 		}
 		
-		if ($payload_min !== '' && $payload_max !== '' && $payload_min_imp !== '' && $payload_max_imp !== '') {
+		if ($payload_min && $payload_max && $payload_min_imp && $payload_max_imp) {
 			$output['payload'] = sprintf($str_payload_range,$payload_min,$payload_min_imp,$payload_max,$payload_max_imp);
-		} elseif ($payload_min !== '' && $payload_min_imp !== '' || $payload_max !== '' && $payload_max_imp !== '' ) {
+		} elseif ($payload_min && $payload_min_imp || $payload_max && $payload_max_imp ) {
 			$output['payload'] = sprintf($str_payload_single,$payload_min,$payload_min_imp,$payload_max,$payload_max_imp);
 		}
 		
-		if ($height_min !== '' && $height_max !== '' && $height_min_imp !== '' && $height_max_imp !== '') {
+		if ($height_min && $height_max && $height_min_imp && $height_max_imp) {
 			$output['height'] = sprintf($str_height_range,$height_min,$height_min_imp,$height_max,$height_max_imp);
-		} elseif ($height_min !== '' && $height_min_imp !== '' || $height_max !== '' && $height_max_imp !== '' ) {
+		} elseif ($height_min && $height_min_imp || $height_max && $height_max_imp ) {
 			$output['height'] = sprintf($str_height_single,$height_min,$height_min_imp,$height_max,$height_max_imp);
 		}
 		
-		if ($head_fitting !== '') $output['head_fitting'] = sprintf($str_head_fitting,implode(', ',$head_fitting));
+		if ($head_fitting) $output['head_fitting'] = sprintf($str_head_fitting,implode(', ',$head_fitting));
 		
-		if ($transport_length !== '' && $transport_length_imp !== '') {
+		if ($transport_length && $transport_length_imp) {
 			$output['transport_length'] = sprintf($str_transport_length,$transport_length,$transport_length_imp);
+		}
+		
+	} elseif (in_array($output['cat']='accessories',$cat_hierachy)) {
+		
+		// Accessories Tech Spec output here...
+		
+		// Set all variables
+		
+		$prefix = '_accessories_tech_';
+		$meta = get_post_meta($id);
+		
+		$weight_unit = $meta[$prefix.'weight_unit'][0];
+		$dimensions_unit = $meta[$prefix.'dimensions_unit'][0];
+		$weight = $meta[$prefix.'weight'][0];
+		$weight_imp = $meta[$prefix.'weight_imp'][0];
+		$payload_min = $meta[$prefix.'payload_min'][0]; //kg
+		$payload_max = $meta[$prefix.'payload_max'][0]; //kg
+		$payload_min_imp = $meta[$prefix.'payload_min_imp'][0];
+		$payload_max_imp = $meta[$prefix.'payload_max_imp'][0];
+		$diameter = $meta[$prefix.'diameter'][0];
+		$diameter_imp = $meta[$prefix.'diameter_imp'][0];
+		$diameter2 = $meta[$prefix.'diameter2'][0];
+		$diameter2_imp = $meta[$prefix.'diameter2_imp'][0];
+		$width = $meta[$prefix.'width'][0];
+		$width_imp = $meta[$prefix.'width_imp'][0];
+		$height = $meta[$prefix.'height'][0];
+		$height_imp = $meta[$prefix.'height_imp'][0];
+		$length = $meta[$prefix.'length'][0];
+		$length_imp = $meta[$prefix.'length_imp'][0];
+		$length_max = $meta[$prefix.'length_max'][0];
+		$length_max_imp = $meta[$prefix.'length_max_imp'][0];
+		$build_rad_min = $meta[$prefix.'build_rad_min'][0]; //cm
+		$build_rad_min_imp = $meta[$prefix.'build_rad_min_imp'][0];
+		$build_rad_max = $meta[$prefix.'build_rad_max'][0]; //cm
+		$build_rad_max_imp = $meta[$prefix.'build_rad_max_imp'][0];
+		$pan_bar_front = $meta[$prefix.'pan_bar_front'][0];
+		$pan_bar_front_imp = $meta[$prefix.'pan_bar_front_imp'][0];
+		$pan_bar_back = $meta[$prefix.'pan_bar_back'][0];
+		$pan_bar_back_imp = $meta[$prefix.'pan_bar_back_imp'][0];
+		$pan_bar_handle = $meta[$prefix.'pan_bar_handle'][0];
+		$pan_bar_handle_imp = $meta[$prefix.'pan_bar_handle_imp'][0];
+		
+		// Long and short formats
+		
+		$str_weight = ($short ? '<span class="metric">%1$s %2$s</span><span class="imperial">%3$s lbs</span>' : 'Weight: <span class="metric">%1$s %2$s</span><span class="imperial">%3$s lbs</span>');
+		$str_payload_range = ($short ? '<span class="metric">%1$s</span><span class="imperial">%2$s</span>&ndash;<span class="metric">%3$s kg</span><span class="imperial">%4$s lbs</span>' : 'Payload: <span class="metric">%1$s</span><span class="imperial">%2$s</span>&ndash;<span class="metric">%3$s kg</span><span class="imperial">%4$s lbs</span>');
+		$str_payload_single = ($short ? '<span class="metric">%1$s%3$s kg</span><span class="imperial">%2$s%4$s lbs</span>' : 'Payload: <span class="metric">%1$s%3$s kg</span><span class="imperial">%2$s%4$s lbs</span>');
+		$str_diameter_range =($short ? '<span class="metric">%1$s</span><span class="imperial">%2$s</span>&ndash;<span class="metric">%3$s %5$s</span><span class="imperial">%4$s in</span>' : 'Diameter range: <span class="metric">%1$s</span><span class="imperial">%2$s</span>&ndash;<span class="metric">%3$s %5$s</span><span class="imperial">%4$s in</span>');
+		$str_diameter_single = ($short ? '<span class="metric">%1$s%3$s %5$s</span><span class="imperial">%2$s%4$s lbs</span>' : 'Diameter: <span class="metric">%1$s%3$s %5$s</span><span class="imperial">%2$s%4$s lbs</span>');
+		$str_width = ($short ? '<span class="metric">%1$s %2$s</span><span class="imperial">%2$s in</span>' : 'Width: <span class="metric">%1$s %2$s</span><span class="imperial">%2$s in</span>');
+		$str_height = ($short ? '<span class="metric">%1$s %2$s</span><span class="imperial">%2$s in</span>' : 'Height: <span class="metric">%1$s %2$s</span><span class="imperial">%2$s in</span>');
+		$str_length_range =($short ? '<span class="metric">%1$s</span><span class="imperial">%2$s</span>&ndash;<span class="metric">%3$s %5$s</span><span class="imperial">%4$s in</span>' : 'Length range: <span class="metric">%1$s</span><span class="imperial">%2$s</span>&ndash;<span class="metric">%3$s %5$s</span><span class="imperial">%4$s in</span>');
+		$str_length_single = ($short ? '<span class="metric">%1$s%3$s %5$s</span><span class="imperial">%2$s%4$s lbs</span>' : 'Length: <span class="metric">%1$s%3$s %5$s</span><span class="imperial">%2$s%4$s lbs</span>');
+		$str_build_rad_range =($short ? '<span class="metric">%1$s</span><span class="imperial">%2$s</span>&ndash;<span class="metric">%3$s cm</span><span class="imperial">%4$s in</span>' : 'Build Radius range: <span class="metric">%1$s</span><span class="imperial">%2$s</span>&ndash;<span class="metric">%3$s cm</span><span class="imperial">%4$s in</span>');
+		$str_build_rad_single = ($short ? '<span class="metric">%1$s%3$s cm</span><span class="imperial">%2$s%4$s lbs</span>' : 'Build Radius: <span class="metric">%1$s%3$s cm</span><span class="imperial">%2$s%4$s lbs</span>');
+		$str_pan_bar = ($short ? '<span class="metric">%1$s / %2$s / %3$s %7$s</span><span class="imperial">%4$s / %5$s / %6$s in</span>' : 'Pan Bar (Front / Back / Handle): <span class="metric">%1$s / %2$s / %3$s %7$s</span><span class="imperial">%4$s / %5$s / %6$s in</span>');
+		
+		// Build strings
+		
+		if ($weight && $weight_imp) {
+			$output['weight'] = sprintf($str_weight,$weight,$weight_unit,$weight_imp);
+		}
+		
+		if ($payload_min && $payload_max && $payload_min_imp && $payload_max_imp) {
+			$output['payload'] = sprintf($str_payload_range,$payload_min,$payload_min_imp,$payload_max,$payload_max_imp);
+		} elseif ($payload_min && $payload_min_imp || $payload_max && $payload_max_imp ) {
+			$output['payload'] = sprintf($str_payload_single,$payload_min,$payload_min_imp,$payload_max,$payload_max_imp);
+		}
+		
+		if ($diameter && $diameter2 && $diameter_imp && $diameter2_imp) {
+			$output['diameter'] = sprintf($str_diameter_range,$diameter,$diameter_imp,$diameter2,$diameter2_imp,$dimensions_unit);
+		} elseif ($diameter && $diameter_imp || $diameter2 && $diameter2_imp ) {
+			$output['diameter'] = sprintf($str_diameter_single,$diameter,$diameter_imp,$diameter2,$diameter2_imp,$dimensions_unit);
+		}
+		
+		if ($width && $width_imp) {
+			$output['width'] = sprintf($str_width,$width,$dimensions_unit,$width_imp);
+		}
+		
+		if ($height && $height_imp) {
+			$output['height'] = sprintf($str_height,$height,$dimensions_unit,$height_imp);
+		}
+		
+		if ($length_min && $length_max && $length_min_imp && $length_max_imp) {
+			$output['length'] = sprintf($str_length_range,$length_min,$length_min_imp,$length_max,$length_max_imp,$dimensions_unit);
+		} elseif ($length_min && $length_min_imp || $length_max && $length_max_imp ) {
+			$output['length'] = sprintf($str_length_single,$length_min,$length_min_imp,$length_max,$length_max_imp,$dimensions_unit);
+		}
+		
+		if ($build_rad_min && $build_rad_max && $build_rad_min_imp && $build_rad_max_imp) {
+			$output['build_rad'] = sprintf($str_build_rad_range,$build_rad_min,$build_rad_min_imp,$build_rad_max,$build_rad_max_imp);
+		} elseif ($build_rad_min && $build_rad_min_imp || $build_rad_max && $build_rad_max_imp ) {
+			$output['build_rad'] = sprintf($str_build_rad_single,$build_rad_min,$build_rad_min_imp,$build_rad_max,$build_rad_max_imp);
+		}
+		
+		if ($pan_bar_front && $pan_bar_front_imp || $pan_bar_back && $pan_bar_back_imp || $pan_bar_handle && $pan_bar_handle_imp) {
+			$output['pan_bar'] = sprintf($str_pan_bar,$pan_bar_front,$pan_bar_back,$pan_bar_handle,$pan_bar_front_imp,$pan_bar_back_imp,$pan_bar_handle_imp,$dimensions_unit);
 		}
 		
 	}

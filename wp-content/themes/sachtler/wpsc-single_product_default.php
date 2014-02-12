@@ -140,6 +140,7 @@
                         </div>
                         
                         <div id="product-tech-spec" class="tab">
+                        	<?php wp_reset_query(); ?>
                         	<?php echo get_product_specs(wpsc_the_product_id()); ?>                        
                         </div><!-- close #product-tech-spec -->
                         

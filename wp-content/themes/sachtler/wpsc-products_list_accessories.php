@@ -12,6 +12,7 @@
                         <?php endif; ?>
                         <div class="product_description">
                             <?php echo wpsc_the_product_description(); ?>
+                            <?php echo get_product_specs(wpsc_the_product_id()); ?>
                         </div><!--close product_description -->
                         <div class="product_c2a_col valign_bottom">
                             <form class="product_form" enctype="multipart/form-data" action="<?php echo esc_url( wpsc_this_page_url() ); ?>" method="post" name="1" id="product_<?php echo wpsc_the_product_id(); ?>">
