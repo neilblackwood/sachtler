@@ -3457,6 +3457,7 @@ function add_query_vars_filter( $vars ){
   $vars[] = "a";
   $vars[] = "b";
   $vars[] = "ml";
+  $vars[] = "y";
   return $vars;
 }
 add_filter( 'query_vars', 'add_query_vars_filter' );

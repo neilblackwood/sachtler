@@ -413,9 +413,17 @@ HEADER
 #secondary-navigation ul.menu li.current-menu-item a,
 #secondary-navigation ul.menu li.parent_url a {color:black;}
 
-#search-form input {float:right;margin-right:0;background-color:#E6E8EA;border-radius:3px;font-size:0.778em;color:black;line-height:1.571em;height:1.571em;margin:0.643em 0;padding:0.286em 1.200em;border:none;-webkit-appearance:none;background:#E6E8EA url(images/search_off.svg) 95% 50% no-repeat;-o-transition:.5s;-ms-transition:.5s;-moz-transition:.5s;-webkit-transition:.5s;transition:.5s;width:50%;}
+#search-form input, #press-search-inputs input {float:right;margin-right:0;background-color:#E6E8EA;border-radius:3px;font-size:0.778em;color:black;line-height:1.571em;height:1.571em;margin:0.643em 0;padding:0.286em 1.200em;border:none;-webkit-appearance:none;background:#E6E8EA url(images/search_off.svg) 95% 50% no-repeat;-o-transition:.5s;-ms-transition:.5s;-moz-transition:.5s;-webkit-transition:.5s;transition:.5s;width:50%;}
 #search-form input:focus {width:100%;outline: none;}
+#press-search-inputs {float: none; text-align: center;}
+#press-search-inputs input {background-color:#DADEE0; float:none; padding:10px;}
+#press-search-inputs input:focus {outline: none;}
 
+#press-search {background-color:#F5F6F7; padding:15px 0; margin-bottom:50px;}
+#press-search input {margin:15px;}
+#press-search select {width:100%; margin:12px;}
+
+#news-index h2 { font-size: 1.3em; margin:0.25em 0 0.35em 0;}
 
 
 /*-------------------------------------------------------------
@@ -492,9 +500,13 @@ PRODUCT CATEGORY PAGES
 
 #page-content ul#product-category-switch {margin:0;}
 #page-content ul#product-category-switch li {display:inline-block;font-size:0.8em;}
-#page-content ul#product-category-switch li a {background-color:#C5CBCF;padding:0.5em 3em;border-radius:3px;margin-right:1em;color:white;text-decoration:none;text-transform:none;}
+#page-content ul#product-category-switch li a,
+#page-content #news-index a.more-link,
+#page-content #news-index .nav_links a {background-color:#C5CBCF;padding:0.5em 3em;border-radius:3px;margin-right:1em;color:white;text-decoration:none;text-transform:none;}
 #page-content ul#product-category-switch li.active a,
-#page-content ul#product-category-switch li a:hover {background-color:black;}
+#page-content ul#product-category-switch li a:hover,
+#page-content #news-index a.more-link:hover,
+#page-content #news-index .nav_links a:hover {background-color:black;}
 
 #page-content .wpsc_product_category_header {margin:3em 0 1em;}
 #page-content .wpsc_product_category_header h2 {margin:0;}
@@ -878,7 +890,21 @@ PAGE SPECIFIC CSS
 #feature-equipment-col {background-color:#ECEDF1;}
 .feature-equipment {padding:1em;}
 
+/* News / Press pages */
 
+.press-service h1, .press-service #content p {text-align: center;}
+#page-content #news-index .entry-content {margin-bottom:2em;}
+#page-content #news-index h2 a,
+#press-news-sidebar a {text-transform: none; text-decoration: none;}
+#page-content #news-index  a.more-link,
+#page-content #news-index .nav_links a {padding: 0.25em 1em; font-size: 0.8em;}
+#page-content #news-index .storycontent p {margin-bottom:0;}
+#page-content #news-index .nav_links {margin-top: 1em;}
+#page-content #news-index .nav_links a {padding: 0.5em 5em;}
+#press-news-sidebar-container {float: right;}
+#press-news-sidebar-container p.black {margin:1em 0;}
+#press-news-sidebar a {color:#818E97;}
+#press-news-sidebar a:hover {color:black;}
 
 /* HOW TO BUY */
 
