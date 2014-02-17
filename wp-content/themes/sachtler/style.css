@@ -892,11 +892,13 @@ PAGE SPECIFIC CSS
 
 /* News / Press / Events pages */
 
-.press-service h1, .press-service #content p, .events #news-index .entry-content {text-align: center;}
-#page-content #news-index .entry-content {margin-bottom:2em;}
+.press-service h1, .press-service #content p,
+#events-index .entry-content {text-align: center;}
+#page-content #news-index .entry-content,
+#events-index .entry-content {margin-bottom:2em;}
 #page-content #news-index h2 a,
 #press-news-sidebar a,
-.events #news-index .entry-content a {text-transform: none; text-decoration: none;}
+#events-index .entry-content a {text-transform: none; text-decoration: none;}
 #page-content #news-index  a.more-link,
 #page-content #news-index .nav_links a {padding: 0.25em 1em; font-size: 0.8em;}
 #page-content #news-index .storycontent p {margin-bottom:0;}
@@ -906,9 +908,9 @@ PAGE SPECIFIC CSS
 #press-news-sidebar-container p.black {margin:1em 0;}
 #press-news-sidebar a {color:#818E97;}
 #press-news-sidebar a:hover {color:black;}
-.events #news-index a { text-align: center; }
-.events #news-index .event {background: url(images/red-spot.png) transparent top left no-repeat; background-size: 100%; color: white; padding: 10.5% 0; margin: 24px 0; width: 39.58333346%;}
-.events #news-index .storycontent .grey {color: #667179;}
+#events-index a { text-align: center; }
+#events-index .event {background: url(images/red-spot.png) transparent top left no-repeat; background-size: 100%; color: white; padding: 10.5% 0; margin: 24px 0; width: 39.58333346%;}
+#events-index .storycontent .grey {color: #667179;}
 
 /* HOW TO BUY */
 

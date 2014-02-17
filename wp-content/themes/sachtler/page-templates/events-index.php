@@ -23,7 +23,7 @@ get_header(); ?>
 <?php dynamic_sidebar('events-widgets'); ?></div>
 </section>
 <?php } ?>
-<section id="news-index">
+<section id="events-index">
 <?php
 
     $query['post_type'] = 'event';
