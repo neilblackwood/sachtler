@@ -153,5 +153,5 @@ $image_width = get_option('product_image_width');
 <!--</div><!--close default_products_page_container-->
 
 <div class="clear"></div>
-<?php edit_post_link( __( 'Edit', 'blankslate' ), '<div class="edit-link">', '</div>' ) ?>
+<?php edit_post_link( __( 'Edit', 'sachtler' ), '<div class="edit-link">', '</div>' ) ?>
 </article>

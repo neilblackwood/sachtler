@@ -154,7 +154,7 @@
                     <div id="product_related_content" class="product-row">
                     	<?php get_related_features(wpsc_the_product_id()); ?>
                         <?php get_related_products(wpsc_the_product_id()); ?>
-                    	<?php edit_post_link( __( 'Edit', 'blankslate' ), '<div class="edit-link">', '</div>' ) ?>
+                    	<?php edit_post_link( __( 'Edit', 'sachtler' ), '<div class="edit-link">', '</div>' ) ?>
                     </div><!--close #product_related_content-->
                     
                 </div><!-- close span12 -->

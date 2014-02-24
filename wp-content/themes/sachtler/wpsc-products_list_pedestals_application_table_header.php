@@ -9,22 +9,22 @@ printf($current_application_title,$current_application->name,$current_applicatio
         </div><!--
         --><div class="center span2">
         	<img src="<?php echo get_bloginfo('template_directory'); ?>/images/ico/payload.png"/>
-        	<p>Payload range</p>
+        	<p><?php _e('Payload range','sachtler'); ?></p>
         </div><!--
         --><div class="center span2">
         	<img src="<?php echo get_bloginfo('template_directory'); ?>/images/ico/height.png"/>
-        	<p>Height range</p>
+        	<p><?php _e('Height range','sachtler'); ?></p>
         </div><!--
         --><div class="center span2">
         	<img src="<?php echo get_bloginfo('template_directory'); ?>/images/ico/on_shot_stroke.png"/>
-        	<p>On-shot stroke</p>
+        	<p><?php _e('On-shot stroke','sachtler'); ?></p>
         </div><!--
         --><div class="center span2">
         	<img src="<?php echo get_bloginfo('template_directory'); ?>/images/ico/clearance.png"/>
-        	<p>Clearance</p>
+        	<p><?php _e('Clearance','sachtler'); ?></p>
         </div><!--
         --><div class="center span1">
-        	<p>Compare up to 4 pedestals</p>
-        	<a href="/sachtler/product-comparison/?ct=pedestals" class="red-button button compare">Show</a>
+        	<p><?php _e('Compare up to 4 pedestals','sachtler'); ?></p>
+        	<a href="/sachtler/product-comparison/?ct=pedestals" class="red-button button compare"><?php _e('Show','sachtler'); ?></a>
         </div><!--
     --></div>

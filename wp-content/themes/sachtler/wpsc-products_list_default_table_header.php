@@ -8,19 +8,19 @@ printf($current_category_title,$current_category_link,$current_category->name,$c
         	<p>&nbsp;</p>
         </div><!--
         --><div class="center span2">
-        	<p>Payload range</p>
+        	<p><?php _e('Payload range','sachtler'); ?></p>
         </div><!--
         --><div class="center span2">
-        	<p>Counterbalance</p>
+        	<p><?php _e('Counterbalance','sachtler'); ?></p>
         </div><!--
         --><div class="center span2">
-        	<p>Grades of drag<br/>
-            horizontal / vertical</p>
+        	<p><?php _e('Grades of drag','sachtler'); ?><br>
+            <?php _e('horizontal / vertical','sachtler'); ?></p>
         </div><!--
         --><div class="center span2">
-        	<p>Head fixing</p>
+        	<p><?php _e('Head fixing','sachtler'); ?></p>
         </div><!--
         --><div class="center span1">
-        	<p>Compare</p>
+        	<p><?php _e('Compare','sachtler'); ?></p>
         </div><!--
     --></div>

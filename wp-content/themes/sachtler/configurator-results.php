@@ -82,24 +82,24 @@ if($weight + $application + $camera_brand + $camera_model > 0) {
         </div><!--
         --><div class="center span2">
         	<img src="<?php echo get_bloginfo('template_directory'); ?>/images/ico/payload.png"/>
-        	<p>Payload range</p>
+        	<p><?php _e('Payload range','sachtler'); ?></p>
         </div><!--
         --><div class="center span2">
         	<img src="<?php echo get_bloginfo('template_directory'); ?>/images/ico/counterbalance.png"/>
-        	<p>Counterbalance</p>
+        	<p><?php _e('Counterbalance','sachtler'); ?></p>
         </div><!--
         --><div class="center span2">
         	<img src="<?php echo get_bloginfo('template_directory'); ?>/images/ico/drag.png"/>
-        	<p>Grades of drag<br/>
-            horizontal / vertical</p>
+        	<p><?php _e('Grades of drag','sachtler'); ?><br>
+            <?php _e('horizontal / vertical','sachtler'); ?></p>
         </div><!--
         --><div class="center span2">
         	<img src="<?php echo get_bloginfo('template_directory'); ?>/images/ico/head.png"/>
-        	<p>Head fitting</p>
+        	<p><?php _e('Head fitting','sachtler'); ?></p>
         </div><!--
         --><div class="center span1">
-        	<p>Compare up to 4 heads</p>
-        	<a href="#" class="red-button button compare">Show</a>
+        	<p><?php _e('Compare up to 4 heads','sachtler'); ?></p>
+        	<a href="#" class="red-button button compare"><?php _e('Show','sachtler'); ?></a>
         </div><!--
     --></div>
 <?php else : ?>

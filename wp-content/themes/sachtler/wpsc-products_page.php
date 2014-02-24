@@ -96,7 +96,6 @@ $image_width = get_option('product_image_width');
 				$output_complete = false;
 				foreach ( $terms as $term ) {
 					$native_term = run_native('get_term',array($term->term_id,'wpsc_product_category'));
-					$cat_parent_slug = $native_term->slug;
 					$cat_filename = $filename.'_'.$native_term->slug.'.php';
 					if(file_exists(TEMPLATEPATH.'/'.$cat_filename)){
 						$product_output[$term->term_id][$menu_order] = includeToString($cat_filename);
@@ -105,9 +104,9 @@ $image_width = get_option('product_image_width');
 					}
 					$cat_parent_name = get_term($term->parent,'wpsc_product_category');
 					if($cat_parent_name && ! is_wp_error( $cat_parent_name ) ) {
-						$native_term = run_native('get_term',array($cat_parent_name->term_id,'wpsc_product_category'));
-						$cat_parent_slug = $native_term->slug;
-						$cat_parent_filename = $filename.'_'.$native_term->slug.'.php';
+						$parent_native_term = run_native('get_term',array($term->parent,'wpsc_product_category'));
+						$cat_parent_slug = $parent_native_term->slug;
+						$cat_parent_filename = $filename.'_'.$parent_native_term->slug.'.php';
 						if(file_exists(TEMPLATEPATH.'/'.$cat_parent_filename)){
 							$product_output[$term->term_id][$menu_order] = includeToString($cat_parent_filename);
 							$output_complete = true;
@@ -321,5 +320,5 @@ $image_width = get_option('product_image_width');
 </div><!--close default_products_page_container-->
 
 <div class="clear"></div>
-<?php edit_post_link( __( 'Edit', 'blankslate' ), '<div class="edit-link">', '</div>' ) ?>
+<?php edit_post_link( __( 'Edit', 'sachtler' ), '<div class="edit-link">', '</div>' ) ?>
 </article>

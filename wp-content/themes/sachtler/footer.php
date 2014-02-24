@@ -5,7 +5,8 @@
     <div class="row">
         <div class="wrapper">
             <div class="span12">
-                <?php dynamic_sidebar('footer-widget'); ?>
+                <?php global $sitepress; ?>
+                <?php dynamic_sidebar('footer-widget-'.$sitepress->get_current_language()); ?>
             </div><!-- .span12 -->
         </div><!-- .wrapper -->
     </div><!-- .row -->

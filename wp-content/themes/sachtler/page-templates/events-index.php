@@ -12,7 +12,7 @@ get_header(); ?>
 <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 <div class="entry-content">
 <?php the_content(); ?>
-<?php edit_post_link( __( 'Edit', 'blankslate' ), '<div class="edit-link">', '</div>' ) ?>
+<?php edit_post_link( __( 'Edit', 'sachtler' ), '<div class="edit-link">', '</div>' ) ?>
 </div>
 </div>
 </article>

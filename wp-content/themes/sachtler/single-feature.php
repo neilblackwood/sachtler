@@ -31,10 +31,10 @@ get_header(); ?>
 	$classes = array('span3','new-line','feature-summary');
 	while ( $query->have_posts() ) : $query->the_post(); ?>
 		--><div id="post-<?php the_ID(); ?>" <?php post_class($classes); ?>>
-		<a href="<?php the_permalink(); ?>" title="<?php printf( __('Read %s', 'blankslate'), the_title_attribute('echo=0') ); ?>" rel="bookmark">
+		<a href="<?php the_permalink(); ?>" title="<?php printf( __('Read %s', 'sachtler'), the_title_attribute('echo=0') ); ?>" rel="bookmark">
 		<div class="entry-summary">
 		<?php the_post_thumbnail('full'); ?>
-		<div class="summary"><?php the_excerpt( sprintf(__( 'continue reading %s', 'blankslate' ), '<span class="meta-nav">&rarr;</span>' )  ); ?></div>
+		<div class="summary"><?php the_excerpt( sprintf(__( 'continue reading %s', 'sachtler' ), '<span class="meta-nav">&rarr;</span>' )  ); ?></div>
 		</div> 
 		</a>
 		</div><!-- 

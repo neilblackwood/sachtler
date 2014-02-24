@@ -4,7 +4,8 @@
  */
 
 global $post, $query;
-$post_slug=$post->post_name;
+
+$post_slug = run_native('get_slug',array($post));
 
 if($post_slug=='press-service') {
 
@@ -61,7 +62,7 @@ get_header(); ?>
 <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 <div class="entry-content">
 <?php the_content(); ?>
-<?php edit_post_link( __( 'Edit', 'blankslate' ), '<div class="edit-link">', '</div>' ) ?>
+<?php edit_post_link( __( 'Edit', 'sachtler' ), '<div class="edit-link">', '</div>' ) ?>
 </div>
 </div>
 </article>
@@ -70,7 +71,7 @@ get_header(); ?>
 <section id="press-search" class="span12">
 <form method="post" id="press-form" action="">
 <div id="press-search-inputs" class="span12">
-<input type="text" value="<?php echo $press_form['search'] ?>" name="search" id="search" placeholder="Search press releases">
+<input type="text" value="<?php echo $press_form['search'] ?>" name="search" id="search" placeholder="<?php _e('Search press releases','sachtler'); ?>">
 <!--<input type="submit" id="searchsubmit" value="Search" />-->
 </div>
 <div class="clear"></div>
@@ -92,19 +93,9 @@ get_header(); ?>
 <?php if ( is_active_sidebar($post_slug.'-widgets') || $post_slug=='press-service') { ?>
 <section id="press-news-sidebar-container" class="span3">
 <div id="press-news-sidebar">
-<?php if($post_slug=='press-service'){ ?>
-    <p class="black">
-        Press contact<br>
-        For all press inquiries, please contact:
-    </p>
-    <p class="black">
-        Tobias Keuthen<br>
-        Global Brand Manager Sachtler
-    </p>
-     <p>
-        T +49 89 321 58 245<br>
-        <a href="mailto:tobias.keuthen@vitecgroup.com">tobias.keuthen@vitecgroup.com</a>
-    </p>
+<?php $lang_code = $sitepress->get_current_language();
+if ( is_active_sidebar('press-service-widget-'.$lang_code) && $post_slug=='press-service') {
+    dynamic_sidebar('press-service-widget-'.$lang_code); ?>
     <hr>
 <?php } ?>
 <?php dynamic_sidebar($post_slug.'-widgets'); ?></div>
@@ -132,9 +123,14 @@ get_header(); ?>
             <div class="storycontent">
                 <?php the_excerpt(); ?>
             </div>
-            <a class="more-link" href="<?php the_permalink(); ?>">More</a>
+            <a class="more-link" href="<?php the_permalink(); ?>"><?php _e('More',''); ?></a>
         </div>
     <?php endwhile;?>
+    <?php if(!have_posts()){ ?>
+        <div class="entry-content span8">
+            <p><?php _e( 'Sorry, nothing matched your search. Please try again.', 'sachtler' ); ?></p>
+        </div>
+    <?php } ?>
     <div class="clear"></div>
     <div class="span8 nav_links"><?php posts_nav_link(' ','Older','Newer'); ?></div>
 </section>

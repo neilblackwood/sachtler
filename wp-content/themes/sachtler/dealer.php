@@ -14,5 +14,5 @@ $meta['_dealer_fax'][0] ? printf('<span class="dealer_fax">F %1$s</span>',$meta[
 $meta['_dealer_email'][0] ? printf('<a href="mailto:%1$s" rel="nofollow" class="dealer_email">%1$s</a>',$meta['_dealer_email'][0]) : '';
 $meta['_dealer_web'][0] ? printf('<a href="http://%1$s" rel="nofollow" class="dealer_web">%1$s</a>',$meta['_dealer_web'][0]) : '';
 ?>
-<?php edit_post_link( __( 'Edit', 'blankslate' ), '<div class="edit-link">', '</div>' ) ?>
+<?php edit_post_link( __( 'Edit', 'sachtler' ), '<div class="edit-link">', '</div>' ) ?>
 </div><!--

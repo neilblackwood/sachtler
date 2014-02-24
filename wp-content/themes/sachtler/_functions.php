@@ -2,16 +2,16 @@
 add_action('after_setup_theme', 'blankslate_setup');
 
 function blankslate_setup(){
-load_theme_textdomain('blankslate', get_template_directory() . '/languages');
+load_theme_textdomain('sachtler', get_template_directory() . '/languages');
 add_theme_support( 'automatic-feed-links' );
 add_theme_support( 'post-thumbnails' );
 global $content_width;
 if ( ! isset( $content_width ) ) $content_width = 640;
 register_nav_menus(
 array(
-	'primary-menu' => __( 'Primary Menu', 'blankslate' ),
-	'secondary-menu' => __( 'Secondary Menu', 'blankslate' ),
-	'configurator-menu' => __( 'Configurator Link', 'blankslate' ),
+	'primary-menu' => __( 'Primary Menu', 'sachtler' ),
+	'secondary-menu' => __( 'Secondary Menu', 'sachtler' ),
+	'configurator-menu' => __( 'Configurator Link', 'sachtler' ),
 	)
 );
 }
@@ -37,10 +37,10 @@ add_filter('comment_form_defaults', 'blankslate_comment_form_defaults');
 function blankslate_comment_form_defaults( $args )
 {
 $req = get_option( 'require_name_email' );
-$required_text = sprintf( ' ' . __('Required fields are marked %s', 'blankslate'), '<span class="required">*</span>' );
-$args['comment_notes_before'] = '<p class="comment-notes">' . __('Your email is kept private.', 'blankslate') . ( $req ? $required_text : '' ) . '</p>';
-$args['title_reply'] = __('Post a Comment', 'blankslate');
-$args['title_reply_to'] = __('Post a Reply to %s', 'blankslate');
+$required_text = sprintf( ' ' . __('Required fields are marked %s', 'sachtler'), '<span class="required">*</span>' );
+$args['comment_notes_before'] = '<p class="comment-notes">' . __('Your email is kept private.', 'sachtler') . ( $req ? $required_text : '' ) . '</p>';
+$args['title_reply'] = __('Post a Comment', 'sachtler');
+$args['title_reply_to'] = __('Post a Reply to %s', 'sachtler');
 return $args;
 }
 add_action( 'init', 'blankslate_add_shortcodes' );
@@ -73,77 +73,77 @@ return '<figure ' . $id . 'class="wp-caption ' . esc_attr($align) . '" style="wi
 add_action( 'widgets_init', 'blankslate_widgets_init' );
 function blankslate_widgets_init() {
 register_sidebar( array (
-'name' => __('Header: Language Area', 'blankslate'),
+'name' => __('Header: Language Area', 'sachtler'),
 'id' => 'language-area',
 'description' => 'Top-most left-hand area above the logo, used for configuring language selection options.',
 'before_widget' => '<div id="%1$s" class="widget-container %2$s">',
 'after_widget' => "</div>",
 ));
 register_sidebar( array (
-'name' => __('Menu: Fluid Heads Widget', 'blankslate'),
+'name' => __('Menu: Fluid Heads Widget', 'sachtler'),
 'id' => 'fluid-heads-widget',
 'description' => 'Fluid Heads menu widget area.',
 'before_widget' => '<div id="%1$s" class="widget-container %2$s"><div class="inside">',
 'after_widget' => "</div></div>",
 ));
 register_sidebar( array (
-'name' => __('Menu: Tripods Widget', 'blankslate'),
+'name' => __('Menu: Tripods Widget', 'sachtler'),
 'id' => 'tripods-widget',
 'description' => 'Tripods menu widget area.',
 'before_widget' => '<div id="%1$s" class="widget-container %2$s"><div class="inside">',
 'after_widget' => "</div></div>",
 ));
 register_sidebar( array (
-'name' => __('Menu: Pedestals Widget', 'blankslate'),
+'name' => __('Menu: Pedestals Widget', 'sachtler'),
 'id' => 'pedestals-widget',
 'description' => 'Pedestals menu widget area.',
 'before_widget' => '<div id="%1$s" class="widget-container %2$s"><div class="inside">',
 'after_widget' => "</div></div>",
 ));
 register_sidebar( array (
-'name' => __('Menu: Camera Stabilizers Widget', 'blankslate'),
+'name' => __('Menu: Camera Stabilizers Widget', 'sachtler'),
 'id' => 'camera-stabilizers-widget',
 'description' => 'Camera Stabilizers menu widget area.',
 'before_widget' => '<div id="%1$s" class="widget-container %2$s"><div class="inside">',
 'after_widget' => "</div></div>",
 ));
 register_sidebar( array (
-'name' => __('Menu: Tripod Systems Widget', 'blankslate'),
+'name' => __('Menu: Tripod Systems Widget', 'sachtler'),
 'id' => 'tripod-systems-widget',
 'description' => 'Tripod Systems menu widget area.',
 'before_widget' => '<div id="%1$s" class="widget-container %2$s"><div class="inside">',
 'after_widget' => "</div></div>",
 ));
 register_sidebar( array (
-'name' => __('Menu: Accessories Widget', 'blankslate'),
+'name' => __('Menu: Accessories Widget', 'sachtler'),
 'id' => 'accessories-widget',
 'description' => 'Accessories menu widget area.',
 'before_widget' => '<div id="%1$s" class="widget-container %2$s"><div class="inside">',
 'after_widget' => "</div></div>",
 ));
 register_sidebar( array (
-'name' => __('Homepage: Primary Widgets', 'blankslate'),
+'name' => __('Homepage: Primary Widgets', 'sachtler'),
 'id' => 'home-primary-widgets',
 'description' => 'The first widget area on the Homepage.',
 'before_widget' => '',
 'after_widget' => '',
 ));
 register_sidebar( array (
-'name' => __('Homepage: Secondary Widgets', 'blankslate'),
+'name' => __('Homepage: Secondary Widgets', 'sachtler'),
 'id' => 'home-secondary-widgets',
 'description' => 'The second widget area on the Homepage.',
 'before_widget' => '',
 'after_widget' => '',
 ));
 register_sidebar( array (
-'name' => __('Products: Call to action', 'blankslate'),
+'name' => __('Products: Call to action', 'sachtler'),
 'id' => 'products-c2a-widgets',
 'description' => 'The call to action area on the product pages.',
 'before_widget' => '',
 'after_widget' => '',
 ));
 register_sidebar( array (
-'name' => __('Footer: Text area', 'blankslate'),
+'name' => __('Footer: Text area', 'sachtler'),
 'id' => 'footer-widget',
 'description' => 'Free-text area for SEO',
 'before_widget' => '',
@@ -155,7 +155,7 @@ $preset_widgets = array (
 );
 function blankslate_get_page_number() {
 if (get_query_var('paged')) {
-print ' | ' . __( 'Page ' , 'blankslate') . get_query_var('paged');
+print ' | ' . __( 'Page ' , 'sachtler') . get_query_var('paged');
 }
 }
 function blankslate_catz($glue) {
@@ -203,17 +203,17 @@ $GLOBALS['comment_depth'] = $depth;
 ?>
 <li id="comment-<?php comment_ID() ?>" <?php comment_class() ?>>
 <div class="comment-author vcard"><?php blankslate_commenter_link() ?></div>
-<div class="comment-meta"><?php printf(__('Posted %1$s at %2$s', 'blankslate' ), get_comment_date(), get_comment_time() ); ?><span class="meta-sep"> | </span> <a href="#comment-<?php echo get_comment_ID(); ?>" title="<?php _e('Permalink to this comment', 'blankslate' ); ?>"><?php _e('Permalink', 'blankslate' ); ?></a>
-<?php edit_comment_link(__('Edit', 'blankslate'), ' <span class="meta-sep"> | </span> <span class="edit-link">', '</span>'); ?></div>
-<?php if ($comment->comment_approved == '0') { echo '\t\t\t\t\t<span class="unapproved">'; _e('Your comment is awaiting moderation.', 'blankslate'); echo '</span>\n'; } ?>
+<div class="comment-meta"><?php printf(__('Posted %1$s at %2$s', 'sachtler' ), get_comment_date(), get_comment_time() ); ?><span class="meta-sep"> | </span> <a href="#comment-<?php echo get_comment_ID(); ?>" title="<?php _e('Permalink to this comment', 'sachtler' ); ?>"><?php _e('Permalink', 'sachtler' ); ?></a>
+<?php edit_comment_link(__('Edit', 'sachtler'), ' <span class="meta-sep"> | </span> <span class="edit-link">', '</span>'); ?></div>
+<?php if ($comment->comment_approved == '0') { echo '\t\t\t\t\t<span class="unapproved">'; _e('Your comment is awaiting moderation.', 'sachtler'); echo '</span>\n'; } ?>
 <div class="comment-content">
 <?php comment_text() ?>
 </div>
 <?php
 if($args['type'] == 'all' || get_comment_type() == 'comment') :
 comment_reply_link(array_merge($args, array(
-'reply_text' => __('Reply','blankslate'),
-'login_text' => __('Login to reply.', 'blankslate'),
+'reply_text' => __('Reply','sachtler'),
+'login_text' => __('Login to reply.', 'sachtler'),
 'depth' => $depth,
 'before' => '<div class="comment-reply-link">',
 'after' => '</div>'
@@ -225,12 +225,12 @@ function blankslate_custom_pings($comment, $args, $depth) {
 $GLOBALS['comment'] = $comment;
 ?>
 <li id="comment-<?php comment_ID() ?>" <?php comment_class() ?>>
-<div class="comment-author"><?php printf(__('By %1$s on %2$s at %3$s', 'blankslate'),
+<div class="comment-author"><?php printf(__('By %1$s on %2$s at %3$s', 'sachtler'),
 get_comment_author_link(),
 get_comment_date(),
 get_comment_time() );
-edit_comment_link(__('Edit', 'blankslate'), ' <span class="meta-sep"> | </span> <span class="edit-link">', '</span>'); ?></div>
-<?php if ($comment->comment_approved == '0') { echo '\t\t\t\t\t<span class="unapproved">'; _e('Your trackback is awaiting moderation.', 'blankslate'); echo '</span>\n'; } ?>
+edit_comment_link(__('Edit', 'sachtler'), ' <span class="meta-sep"> | </span> <span class="edit-link">', '</span>'); ?></div>
+<?php if ($comment->comment_approved == '0') { echo '\t\t\t\t\t<span class="unapproved">'; _e('Your trackback is awaiting moderation.', 'sachtler'); echo '</span>\n'; } ?>
 <div class="comment-content">
 <?php comment_text() ?>
 </div>

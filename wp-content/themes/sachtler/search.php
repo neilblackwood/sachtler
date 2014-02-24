@@ -4,7 +4,7 @@ $i=1;
  get_header(); ?>
 <article id="content" class="span12 search">
 	<?php if ( have_posts() ) : ?>
-		<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'blankslate' ), '<span>' . get_search_query()  . '</span>' ); ?></h1>
+		<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'sachtler' ), '<span>' . get_search_query()  . '</span>' ); ?></h1>
 		<?php get_template_part( 'nav', 'above' ); 
 		
 		//array to hold the sorted posts		
@@ -39,9 +39,9 @@ $i=1;
 		<?php get_template_part( 'nav', 'below' ); ?>
 	<?php else : ?>
 		<div id="post-0" class="post no-results not-found">
-			<h2 class="entry-title"><?php _e( 'Nothing Found', 'blankslate' ) ?></h2>
+			<h2 class="entry-title"><?php _e( 'Nothing Found', 'sachtler' ) ?></h2>
 			<div class="entry-content">
-				<p><?php _e( 'Sorry, nothing matched your search. Please try again.', 'blankslate' ); ?></p>
+				<p><?php _e( 'Sorry, nothing matched your search. Please try again.', 'sachtler' ); ?></p>
 				<?php get_search_form(); ?>
 			</div>
 		</div>

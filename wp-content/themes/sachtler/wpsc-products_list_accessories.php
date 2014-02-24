@@ -26,7 +26,7 @@
                                         <?php echo wpsc_display_product_multicurrency(); ?>
                                     <?php endif; ?>
                                     <?php $wpsc_cart->get_tax_rate(); ?>
-                                    <?php printf('<span>inc VAT: %1$s%2$s</span>',$wpsc_cart->tax_percentage,'%'); ?>
+                                    <?php echo '<span>'; printf( __( 'inc VAT: %1$s%2$s', 'sachtler' ), $wpsc_cart->tax_percentage,'%' ); echo '</span>'; ?>
                                 </div><!--close wpsc_product_price-->
 
                                 <input type="hidden" value="add_to_cart" name="wpsc_ajax_action" />
